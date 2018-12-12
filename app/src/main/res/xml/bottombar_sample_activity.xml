@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+
+        id="@+id/tab1"
+        title="对话"/>
+    <tab
+        title="联系人"
+
+        id="@+id/tab2"
+        />
+    <tab
+
+        id="@+id/tab3"
+        title="话题"/>
+    <tab
+
+        id="@+id/tab4"
+        title="个人中心"/>
+    <!--如果加图标，方法如下-->
+    <!--<tab-->
+        <!--icon="@drawable/ic_friends"-->
+        <!--id="@+id/tab4"-->
+        <!--title="个人中心"/>-->
+</tabs>
