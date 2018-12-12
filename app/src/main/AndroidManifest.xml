@@ -22,6 +22,24 @@
         <activity android:name=".MainActivity"
             android:label="WeZone">
         </activity>
+        <activity android:name=".SecurityActivity"
+            android:label="账号与安全">
+        </activity>
+        <activity android:name=".InformActivity"
+            android:label="通知管理">
+        </activity>
+        <activity android:name=".TopicDetialActivity"
+            android:label="#帖子">
+        </activity>
+        <activity android:name=".SendTopicDetailActivity"
+            android:label="发帖">
+        </activity>
+        <activity android:name=".AddFriendActivity"
+            android:label="添加好友">
+        </activity>
+        <activity android:name=".ChatActivity"
+            android:label="Chat">
+        </activity>
     </application>
 
 </manifest>
