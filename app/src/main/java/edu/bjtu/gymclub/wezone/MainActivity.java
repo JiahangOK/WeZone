@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
+        //去掉系统丑陋的ActionBar
+        getSupportActionBar().hide();
     }
 }
