@@ -25,13 +25,7 @@
         android:layout_marginBottom="8dp"
         android:src="@mipmap/person"
         app:civ_border_color="@color/colorPrimaryDark"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.158" />
+        app:civ_border_width="2dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,14 +48,17 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/nameInput"
+                style="@android:style/Widget.AutoCompleteTextView"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:singleLine="false"
                 android:text="王二狗"
                 android:textColor="#e7e7e7"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:background="#F9F9F9"/>
 
             <Space
                 android:layout_width="wrap_content"
@@ -99,14 +96,15 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/phoneinput"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="18812344321"
                 android:textColor="#e7e7e7"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:background="#F9F9F9"/>
 
             <Space
                 android:layout_width="wrap_content"
@@ -145,14 +143,15 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/olepwInput"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="请填写原始密码"
                 android:textColor="#e7e7e7"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:background="#F9F9F9"/>
 
             <Space
                 android:layout_width="wrap_content"
@@ -191,14 +190,15 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/newpwInput"
                 android:layout_width="206dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="组合字母、数字或符号"
                 android:textColor="#e7e7e7"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:background="#F9F9F9"/>
 
             <Space
                 android:layout_width="wrap_content"
@@ -245,14 +245,15 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/surepw"
                 android:layout_width="206dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="再输入一遍新密码"
                 android:textColor="#e7e7e7"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:background="#F9F9F9"/>
 
             <Space
                 android:layout_width="wrap_content"
