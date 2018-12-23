@@ -1,4 +1,4 @@
-package edu.bjtu.gymclub.wezone;
+package edu.bjtu.gymclub.wezone.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,18 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class ContactFragment extends Fragment {
+import edu.bjtu.gymclub.wezone.R;
+
+public class TopicFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.contact_fragment,null);
-        Button friend = view.findViewById(R.id.friend);
-        friend.setOnClickListener(new View.OnClickListener() {
+        View view=  inflater.inflate(R.layout.topic_fragment,null);
+        Button topic_button = view.findViewById(R.id.topic_1);
+        topic_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
                 intent = new Intent();
-                intent.setClass(getActivity(), ChatActivity.class);
+                intent.setClass(getActivity(), TopicDetialActivity.class);
                 startActivity(intent);
             }
         });

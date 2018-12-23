@@ -1,4 +1,4 @@
-package edu.bjtu.gymclub.wezone;
+package edu.bjtu.gymclub.wezone.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.SearchView;
+
+import edu.bjtu.gymclub.wezone.R;
 
 
 public class TalkFragment extends Fragment {
@@ -45,21 +47,14 @@ public class TalkFragment extends Fragment {
         //绑定内容
         context = view.getContext();
 
-        Button talk = view.findViewById(R.id.talk_1);
-        talk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                intent = new Intent();
-                intent.setClass(getActivity(), ChatActivity.class);
-                startActivity(intent);
-            }
-        });
-
         //fragment
         manager = getChildFragmentManager();
         transaction = manager.beginTransaction();
-        transaction.add(R.id.news_list,new AllNewsList());
+        AllNewsList newsList = new AllNewsList();
+        Bundle bundle = new Bundle();
+        bundle.putString("choice","now");
+        newsList.setArguments(bundle);
+        transaction.replace(R.id.news_list,newsList);
         transaction.commit();
 
 
@@ -96,7 +91,11 @@ public class TalkFragment extends Fragment {
                 allmessage.setBackgroundResource(R.drawable.radio_button1);
                 laterdeal.setBackgroundResource(R.drawable.radio_button);
                 transaction = manager.beginTransaction();
-                transaction.replace(R.id.news_list,new AllNewsList());
+                AllNewsList newsList = new AllNewsList();
+                Bundle bundle = new Bundle();
+                bundle.putString("choice","now");
+                newsList.setArguments(bundle);
+                transaction.replace(R.id.news_list,newsList);
                 transaction.commit();
             }
         });
@@ -108,7 +107,11 @@ public class TalkFragment extends Fragment {
                 allmessage.setBackgroundResource(R.drawable.radio_button2);
                 laterdeal.setBackgroundResource(R.drawable.radio_button3);
                 transaction = manager.beginTransaction();
-                transaction.replace(R.id.news_list,new WaitToSeeList());
+                AllNewsList newsList = new AllNewsList();
+                Bundle bundle = new Bundle();
+                bundle.putString("choice","wait");
+                newsList.setArguments(bundle);
+                transaction.replace(R.id.news_list,newsList);
                 transaction.commit();
             }
         });

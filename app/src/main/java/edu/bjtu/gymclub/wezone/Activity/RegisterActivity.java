@@ -1,8 +1,10 @@
-package edu.bjtu.gymclub.wezone;
+package edu.bjtu.gymclub.wezone.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import edu.bjtu.gymclub.wezone.R;
 
 public class RegisterActivity extends AppCompatActivity {
     @Override

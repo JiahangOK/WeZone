@@ -1,7 +1,6 @@
-package edu.bjtu.gymclub.wezone;
+package edu.bjtu.gymclub.wezone.Activity;
 
 import android.content.Intent;
-import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.v3.exception.BmobException;
+import edu.bjtu.gymclub.wezone.R;
 
 public class LoginActivity extends AppCompatActivity {
     EditText user_name_edit;

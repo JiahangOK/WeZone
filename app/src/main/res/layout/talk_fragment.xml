@@ -104,7 +104,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="70dp">
 
             <SearchView
                 android:id="@+id/search_view"
@@ -119,22 +119,10 @@
         <FrameLayout
             android:id="@+id/news_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="400dp"
+            android:layout_marginBottom="2dp">
 
         </FrameLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="这里是对话列表"></TextView>
-
-        <Button
-            android:id="@+id/talk_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity=""
-            android:text="这是一条对话" />
 
 
     </LinearLayout>

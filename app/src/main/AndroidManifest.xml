@@ -33,40 +33,42 @@
 
 
         <activity
-            android:name=".FirstInActivity"
+            android:name=".Activity.FirstInActivity"
             android:label="WeZone"
             >
+
+        </activity>
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:label="登陆"></activity>
+        <activity
+            android:name=".Activity.RegisterActivity"
+            android:label="注册"></activity>
+        <activity
+            android:name=".Activity.MainActivity"
+            android:label="WeZone">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="登陆"></activity>
-        <activity
-            android:name=".RegisterActivity"
-            android:label="注册"></activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="WeZone"></activity>
-        <activity
-            android:name=".SecurityActivity"
+            android:name=".Activity.SecurityActivity"
             android:label="账号与安全"></activity>
         <activity
-            android:name=".InformActivity"
+            android:name=".Activity.InformActivity"
             android:label="通知管理"></activity>
         <activity
-            android:name=".TopicDetialActivity"
+            android:name=".Activity.TopicDetialActivity"
             android:label="#帖子"></activity>
         <activity
-            android:name=".SendTopicDetailActivity"
+            android:name=".Activity.SendTopicDetailActivity"
             android:label="发帖"></activity>
         <activity
-            android:name=".AddFriendActivity"
+            android:name=".Activity.AddFriendActivity"
             android:label="添加好友"></activity>
         <activity
-            android:name=".ChatActivity"
+            android:name=".Activity.ChatActivity"
             android:label="Chat"></activity>
 
         <!--TODO 集成：1.5、配置IM SDK需要的广播和服务-->

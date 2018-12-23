@@ -1,4 +1,4 @@
-package edu.bjtu.gymclub.wezone;
+package edu.bjtu.gymclub.wezone.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -8,9 +8,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
-import com.roughike.bottombar.TabSelectionInterceptor;
+
+import edu.bjtu.gymclub.wezone.R;
 
 public class MainActivity extends AppCompatActivity{
     private FragmentManager manager;

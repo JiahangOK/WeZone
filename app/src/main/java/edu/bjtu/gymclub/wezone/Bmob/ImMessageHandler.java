@@ -2,7 +2,7 @@ package edu.bjtu.gymclub.wezone.Bmob;
 import cn.bmob.newim.event.MessageEvent;
 import cn.bmob.newim.event.OfflineMessageEvent;
 import cn.bmob.newim.listener.BmobIMMessageHandler;
-import edu.bjtu.gymclub.wezone.ChatActivity;
+import edu.bjtu.gymclub.wezone.Activity.ChatActivity;
 
 //集成一个消息接收类，进行消息的接收
 public class ImMessageHandler extends BmobIMMessageHandler{
