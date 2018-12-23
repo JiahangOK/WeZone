@@ -56,11 +56,11 @@ public class TalkFragment extends Fragment {
             }
         });
 
-//        //fragment
-//        manager = getChildFragmentManager();
-//        transaction = manager.beginTransaction();
-//        transaction.add(R.id.news_list,new news_list_fragment());
-//        transaction.commit();
+        //fragment
+        manager = getChildFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.add(R.id.news_list,new AllNewsList());
+        transaction.commit();
 
 
         //绑定按钮
@@ -95,9 +95,9 @@ public class TalkFragment extends Fragment {
             public void onClick(View v) {
                 allmessage.setBackgroundResource(R.drawable.radio_button1);
                 laterdeal.setBackgroundResource(R.drawable.radio_button);
-//                transaction = manager.beginTransaction();
-//                transaction.replace(R.id.contentContainer,new news_list_fragment());
-//                transaction.commit();
+                transaction = manager.beginTransaction();
+                transaction.replace(R.id.news_list,new AllNewsList());
+                transaction.commit();
             }
         });
 
@@ -107,9 +107,9 @@ public class TalkFragment extends Fragment {
             public void onClick(View v) {
                 allmessage.setBackgroundResource(R.drawable.radio_button2);
                 laterdeal.setBackgroundResource(R.drawable.radio_button3);
-//                transaction = manager.beginTransaction();
-//                transaction.replace(R.id.contentContainer,new news_wait_see());
-//                transaction.commit();
+                transaction = manager.beginTransaction();
+                transaction.replace(R.id.news_list,new WaitToSeeList());
+                transaction.commit();
             }
         });
 
