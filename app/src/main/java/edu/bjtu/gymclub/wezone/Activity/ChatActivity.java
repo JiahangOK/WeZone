@@ -1,10 +1,16 @@
 package edu.bjtu.gymclub.wezone.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -20,7 +26,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import cn.bmob.newim.BmobIM;
@@ -141,6 +149,73 @@ public class ChatActivity extends AppCompatActivity{
     public void goback(View view){
         this.finish();
     }
+
+
+    /**
+     * 启动相机，创建文件，并要求返回uri
+     */
+
+    private Uri mVideoUri;
+    private File mVideoFile;
+    private String mVideoName;
+    private String mVideoPath;
+
+//    private void startVideo() {
+//        String TAG = "NIHAO";
+//        Intent intent = new Intent();
+//        //指定动作，启动相机
+//        intent.setAction(MediaStore.ACTION_VIDEO_CAPTURE);
+//        intent.addCategory(Intent.CATEGORY_DEFAULT);
+//        //创建文件
+//        createVideoFile();
+//        //添加权限
+//        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            //做一些处理
+//            //获取uri
+//            mVideoUri = FileProvider.getUriForFile(this, "zj.it.bhne.gridengineeringsurvey.fileprovider", mVideoFile);
+//        } else {
+//            //在版本低于此的时候，做一些处理
+//            mVideoUri = Uri.fromFile(mVideoFile);
+//        }
+//
+//
+//        Log.d(TAG, "根据视频文件路径获取uri。");
+//        //将uri加入到额外数据
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, mVideoUri);
+//        Log.d(TAG, "将uri加入启动相机的额外数据。");
+//        Log.d(TAG, "启动相机...");
+//        //启动相机并要求返回结果
+//        startActivityForResult(intent, 200);
+//        Log.d(TAG, "拍摄中...");
+//    }
+
+    /**
+     * 创建视频文件
+     */
+//    private void createVideoFile() {
+//        String TAG = "NIHAO";
+//
+//        Log.d(TAG, "开始创建图片文件...");
+//        //设置图片文件名（含后缀），以当前时间的毫秒值为名称
+//        mVideoName = Calendar.getInstance().getTimeInMillis() + ".mp4";
+//        Log.d(TAG, "设置图片文件的名称为："+mVideoName);
+//        //创建图片文件
+//        mVideoFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+//                + "/gymclub/" + getPath() + "/", mVideoName);
+//        //将图片的绝对路径设置给mImagePath，后面会用到
+//        mVideoPath = mVideoFile.getAbsolutePath();
+//        //按设置好的目录层级创建
+//        mVideoFile.getParentFile().mkdirs();
+//        Log.d(TAG, "按设置的目录层级创建图片文件，路径："+mVideoPath);
+//        //不加这句会报Read-only警告。且无法写入SD
+//        mVideoFile.setWritable(true);
+//        Log.d(TAG, "将图片文件设置可写。");
+//    }
+
+
+
+
 //     int count = 0;
 //    @Override\\    /    public void onClick(View v) {
 //
