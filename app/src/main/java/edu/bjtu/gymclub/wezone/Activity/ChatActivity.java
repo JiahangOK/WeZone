@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -45,6 +46,7 @@ import edu.bjtu.gymclub.wezone.Adapter.MyListAdapter1;
 import edu.bjtu.gymclub.wezone.R;
 
 public class ChatActivity extends AppCompatActivity{
+    private static final int CAMERA_OK = 100;
     public static TextView tv_message;
     private RecyclerView record_list;
     private MyListAdapter1 myAdapter;
@@ -57,27 +59,6 @@ public class ChatActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat);
-
-//        final View view_Bottom;
-//        final View root_View;
-//        view_Bottom = findViewById(R.id.view_button);
-//        root_View = findViewById(R.id.root_View);
-//        root_View.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                Rect r = new Rect();
-//                root_View.getWindowVisibleDisplayFrame(r);
-//                int screenHeight = root_View.getRootView().getHeight();
-//                int heightDifference = screenHeight - (r.bottom - r.top);
-//                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,0);
-//                if(heightDifference>150) params.height=heightDifference;
-//                else params.height=2;
-//                view_Bottom.setLayoutParams(params);
-//            }
-//        });
-
-
-
 
         //发送按钮的绑定
         send_button = (Button) findViewById(R.id.send_button);
@@ -150,70 +131,40 @@ public class ChatActivity extends AppCompatActivity{
         this.finish();
     }
 
+    public void Vedio(View view){
+        ActivityCompat.requestPermissions(this,
+                new String[]{android.Manifest.permission.CAMERA},CAMERA_OK);
+        startVideo();
+    }
+
 
     /**
      * 启动相机，创建文件，并要求返回uri
      */
 
-    private Uri mVideoUri;
-    private File mVideoFile;
-    private String mVideoName;
-    private String mVideoPath;
 
-//    private void startVideo() {
-//        String TAG = "NIHAO";
-//        Intent intent = new Intent();
-//        //指定动作，启动相机
-//        intent.setAction(MediaStore.ACTION_VIDEO_CAPTURE);
-//        intent.addCategory(Intent.CATEGORY_DEFAULT);
-//        //创建文件
-//        createVideoFile();
-//        //添加权限
-//        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            //做一些处理
-//            //获取uri
-//            mVideoUri = FileProvider.getUriForFile(this, "zj.it.bhne.gridengineeringsurvey.fileprovider", mVideoFile);
-//        } else {
-//            //在版本低于此的时候，做一些处理
-//            mVideoUri = Uri.fromFile(mVideoFile);
-//        }
-//
-//
-//        Log.d(TAG, "根据视频文件路径获取uri。");
-//        //将uri加入到额外数据
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT, mVideoUri);
-//        Log.d(TAG, "将uri加入启动相机的额外数据。");
-//        Log.d(TAG, "启动相机...");
-//        //启动相机并要求返回结果
-//        startActivityForResult(intent, 200);
-//        Log.d(TAG, "拍摄中...");
-//    }
+    private void startVideo() {
+        Intent intent = new Intent();
+        //指定动作，启动相机
+        intent.setAction(MediaStore.ACTION_VIDEO_CAPTURE);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        //添加权限
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-    /**
-     * 创建视频文件
-     */
-//    private void createVideoFile() {
-//        String TAG = "NIHAO";
-//
-//        Log.d(TAG, "开始创建图片文件...");
-//        //设置图片文件名（含后缀），以当前时间的毫秒值为名称
-//        mVideoName = Calendar.getInstance().getTimeInMillis() + ".mp4";
-//        Log.d(TAG, "设置图片文件的名称为："+mVideoName);
-//        //创建图片文件
-//        mVideoFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-//                + "/gymclub/" + getPath() + "/", mVideoName);
-//        //将图片的绝对路径设置给mImagePath，后面会用到
-//        mVideoPath = mVideoFile.getAbsolutePath();
-//        //按设置好的目录层级创建
-//        mVideoFile.getParentFile().mkdirs();
-//        Log.d(TAG, "按设置的目录层级创建图片文件，路径："+mVideoPath);
-//        //不加这句会报Read-only警告。且无法写入SD
-//        mVideoFile.setWritable(true);
-//        Log.d(TAG, "将图片文件设置可写。");
-//    }
+        //启动相机并要求返回结果
+        startActivityForResult(intent, 1);
+    }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 1 && resultCode == -1) {
+            Uri videoUri = intent.getData();
+            Log.e("niaho", videoUri.toString());
+            //mVideoView.setVideoURI(videoUri);
+        }else{
+            Log.e("niaho",Integer.toString(resultCode));
+        }
+    }
 
 
 //     int count = 0;
