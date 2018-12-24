@@ -15,7 +15,25 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Logger;
+
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.bean.BmobIMConversation;
+import cn.bmob.newim.event.MessageEvent;
+import cn.bmob.newim.event.OfflineMessageEvent;
+import cn.bmob.newim.util.IMLogger;
+import edu.bjtu.gymclub.wezone.Entity.Conversation;
+import edu.bjtu.gymclub.wezone.Entity.NewFriendConversation;
+import edu.bjtu.gymclub.wezone.Entity.PrivateConversation;
 import edu.bjtu.gymclub.wezone.R;
+import edu.bjtu.gymclub.wezone.db.NewFriend;
+import edu.bjtu.gymclub.wezone.db.NewFriendManager;
+import edu.bjtu.gymclub.wezone.event.RefreshEvent;
 
 
 public class TalkFragment extends Fragment {
@@ -172,5 +190,6 @@ public class TalkFragment extends Fragment {
 
         return view;
     }
+
 
 }

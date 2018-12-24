@@ -6,4 +6,5 @@
     <color name="colorSpace">#f0f0f1</color>
     <color name="colorPress">#787dd9</color>
     <color name="colorslice">#F1F3FF</color>
+    <color name="base_color_text_white">#ffffff</color>
 </resources>
