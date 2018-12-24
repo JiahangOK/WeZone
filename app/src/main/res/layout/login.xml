@@ -55,15 +55,6 @@
             android:textAlignment="viewStart"
             android:textColor="@android:color/darker_gray" />
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="0.2px"
-            android:layout_height="40dp"
-            android:layout_marginLeft="-30dp"
-            android:layout_weight="0.01"
-            app:srcCompat="@mipmap/right"
-            tools:layout_marginTop="4dp" />
-
         <android.support.v4.view.ViewPager
             android:layout_width="20dp"
             android:layout_height="match_parent" />
