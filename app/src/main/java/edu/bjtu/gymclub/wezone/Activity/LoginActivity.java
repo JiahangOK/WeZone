@@ -12,48 +12,43 @@ import android.widget.Toast;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
+import edu.bjtu.gymclub.wezone.Model.UserModel;
 import edu.bjtu.gymclub.wezone.R;
 
-public class LoginActivity extends AppCompatActivity {
-    EditText user_name_edit;
+public class LoginActivity extends BaseActivity {
+    private EditText user_name_edit;
+    private EditText password_edit;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        user_name_edit= findViewById(R.id.user_name);
+        user_name_edit= (EditText) findViewById(R.id.user_name);
+        password_edit= (EditText) findViewById(R.id.password_edit);
 
-        Button login_button = findViewById(R.id.login_button_id);
+        Button login_button = (Button) findViewById(R.id.login_button_id);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user_name = user_name_edit.getText().toString();
-                if(user_name.equals("用户名")||user_name.equals("")){
-                    Toast.makeText(LoginActivity.this,"请输入用户名",Toast.LENGTH_SHORT).show();
+                UserModel.getInstance().login(user_name_edit.getText().toString(), password_edit.getText().toString(), new LogInListener() {
 
-                }else{
-                    Intent intent;
-                    intent = new Intent();
-                    intent.setClass(LoginActivity.this, MainActivity.class);
-                    BmobIM.connect(user_name_edit.getText().toString(), new ConnectListener() {
-                        @Override
-                        public void done(String s, BmobException e) {
-                            if (e == null){
-                                Toast.makeText(LoginActivity.this, "服务器连接成功", Toast.LENGTH_SHORT).show();
-                                Log.i("TAG","服务器连接成功");
-                            }else {
-                                Log.i("TAG",e.getMessage()+"  "+e.getErrorCode());
-                            }
+                    @Override
+                    public void done(Object o, BmobException e) {
+                        if (e == null) {
+                            //登录成功
+                            startActivity(MainActivity.class, null, true);
+                        } else {
+                            toast(e.getMessage() + "(" + e.getErrorCode() + ")");
                         }
-                    });
-                    startActivity(intent);
-                }
+                    }
+                });
 
             }
         });
 
-        Button register_button = findViewById(R.id.register_button_id);
+        Button register_button = (Button) findViewById(R.id.register_button_id);
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

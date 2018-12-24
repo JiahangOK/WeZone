@@ -37,9 +37,9 @@
             android:id="@+id/imageView3"
             android:layout_width="0.5px"
             android:layout_height="41dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="-28dp"
             android:layout_marginBottom="2dp"
+            android:layout_marginRight="-28dp"
+            android:layout_marginTop="4dp"
             android:layout_weight="0.01"
             app:srcCompat="@mipmap/left"
             tools:layout_marginTop="3dp" />
@@ -51,7 +51,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:background="@mipmap/main"
-            android:text="用户名"
+            android:hint="用户名"
             android:textAlignment="viewStart"
             android:textColor="@android:color/darker_gray" />
 
@@ -90,20 +90,23 @@
             android:id="@+id/imageView6"
             android:layout_width="0.5px"
             android:layout_height="41dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="-28dp"
             android:layout_marginBottom="2dp"
+            android:layout_marginRight="-28dp"
+            android:layout_marginTop="4dp"
             android:layout_weight="0.01"
             app:srcCompat="@mipmap/left"
             tools:layout_marginTop="3dp" />
 
         <EditText
+            android:id="@+id/password_edit"
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:background="@mipmap/main"
-            android:text="密码"
+            android:hint="密码"
+            android:inputType="textPassword"
+
             android:textColor="@android:color/darker_gray" />
 
         <ImageView

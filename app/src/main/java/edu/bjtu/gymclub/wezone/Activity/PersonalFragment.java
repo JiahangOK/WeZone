@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import cn.bmob.newim.BmobIM;
+import edu.bjtu.gymclub.wezone.Model.UserModel;
 import edu.bjtu.gymclub.wezone.R;
 
 public class PersonalFragment extends Fragment {
@@ -42,6 +44,10 @@ public class PersonalFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UserModel.getInstance().logout();
+                //TODO 连接：3.2、退出登录需要断开与IM服务器的连接
+                BmobIM.getInstance().disConnect();
+                getActivity().finish();
                 Intent intent;
                 intent = new Intent();
                 intent.setClass(getActivity(), LoginActivity.class);
