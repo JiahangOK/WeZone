@@ -13,19 +13,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import edu.bjtu.gymclub.wezone.Activity.ChatActivity;
+import edu.bjtu.gymclub.wezone.Entity.Conversation;
+import edu.bjtu.gymclub.wezone.Entity.User;
 import edu.bjtu.gymclub.wezone.R;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<List<String>> mDatas;
+    private List<Conversation> mDatas;
 
-    public MyListAdapter(Context context, List<List<String>> data) {
+    public MyListAdapter(Context context, List<Conversation> data) {
         this.mContext = context;
         this.mDatas = data;
+    }
+
+
+    private OnRecyclerViewListener onRecyclerViewListener;
+
+    public void setOnRecyclerViewListener(OnRecyclerViewListener onRecyclerViewListener) {
+        this.onRecyclerViewListener = onRecyclerViewListener;
     }
 
     @Override
@@ -36,15 +49,31 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.username.setText(mDatas.get(position).get(0));
-        holder.content.setText(mDatas.get(position).get(1));
-        holder.date.setText(mDatas.get(position).get(2));
+        holder.username.setText(mDatas.get(position).getcName());
+        holder.content.setText(mDatas.get(position).getLastMessageContent());
+        Long time = mDatas.get(position).getLastMessageTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Date date= new Date(time);
+        holder.date.setText(sdf.format(date));
     }
 
     @Override
     public int getItemCount() {
         return mDatas.size();
     }
+
+    /**
+     * 绑定数据
+     *
+     * @param datas
+     * @return
+     */
+    public MyListAdapter bindDatas(Collection<Conversation> datas) {
+        this.mDatas = datas == null ? new ArrayList<Conversation>() : new ArrayList<Conversation>(datas);
+        notifyDataSetChanged();
+        return this;
+    }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView username;
@@ -67,6 +96,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyViewHold
                     intent.setClass(mContext, ChatActivity.class);
                     mContext.startActivity(intent);
                 }
+
             });
         }
     }
