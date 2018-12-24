@@ -92,7 +92,7 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/security_setting"
+                android:id="@+id/securitySetting"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/notification_setting"
+                android:id="@+id/notificationSetting"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -199,7 +199,7 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/inform_setting"
+                android:id="@+id/informSetting"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -251,7 +251,7 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/other_setting"
+                android:id="@+id/otherSetting"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

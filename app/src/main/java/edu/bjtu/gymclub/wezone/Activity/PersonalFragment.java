@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import cn.bmob.newim.BmobIM;
 import edu.bjtu.gymclub.wezone.Model.UserModel;
@@ -18,8 +19,8 @@ public class PersonalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.personal_fragment, null);
-        Button security = view.findViewById(R.id.security_setting);
-        Button inform = view.findViewById(R.id.inform_setting);
+        ImageButton security = view.findViewById(R.id.securitySetting);
+        ImageButton inform = view.findViewById(R.id.informSetting);
         Button logout = view.findViewById(R.id.logout);
 
         security.setOnClickListener(new View.OnClickListener() {
