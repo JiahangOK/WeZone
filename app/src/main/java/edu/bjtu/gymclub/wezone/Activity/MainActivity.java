@@ -78,8 +78,8 @@ public class MainActivity extends BaseActivity {
         IMMLeaks.fixFocusedViewLeak(getApplication());
 
 
-        //去掉系统丑陋的ActionBar
-        getSupportActionBar().hide();
+//        //去掉系统丑陋的ActionBar
+//        getSupportActionBar().hide();
     }
 
     @Override

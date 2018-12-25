@@ -22,4 +22,18 @@
     <color name="item_bottom_text">#8e8e8e</color>
     <color name="line_bg">#e5e5e5</color>
     <color name="gray_divider">#d7dce1</color>
+
+    <!--灵犀-->
+    <!-- 主题默认 -->
+    <color name="textColorPrimary">#767676</color>
+
+    <color name="black_light">#212121</color>
+    <color name="blue_aqua">#4fc1e9</color>
+    <color name="blue">#25c6fc</color>
+    <color name="gray_dark">#656D78</color>
+    <color name="gray_light">#ffdbe4e7</color>
+    <color name="gray_light2">#f2f2f2</color>
+    <color name="grapefruit">#ED5565</color>
+    <color name="tnt">#fffcf7</color>
+    <color name="mine_select_black">#ffeeeeee</color>
 </resources>

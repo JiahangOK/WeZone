@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">WeZone</string>
+
+    <!--灵犀-->
+    <string name="zero_num">0</string>
+    <string name="app_placeholder">占位符</string>
+    <string name="hint_comment">吐槽一下</string>
+    <string name="action_send">发送</string>
+    <string name="hint_share">写下今天的普通心情吧</string>
 </resources>

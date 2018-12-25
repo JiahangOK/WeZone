@@ -37,4 +37,9 @@
     <style name="base_divider_top_20" parent="base_divider">
         <item name="android:layout_marginTop">20dp</item>
     </style>
+
+    <!--灵犀-->
+    <style name="AppTheme.TextAppearance">
+        <item name="android:textSize">@dimen/font_18</item>
+    </style>
 </resources>

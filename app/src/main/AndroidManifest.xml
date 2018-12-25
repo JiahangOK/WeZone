@@ -83,7 +83,8 @@
             android:label="#帖子"></activity>
         <activity
             android:name=".Activity.SendTopicDetailActivity"
-            android:label="发帖"></activity>
+            android:label="发帖"
+            android:src="@drawable/back_left"></activity>
         <activity
             android:name=".Activity.AddFriendActivity"
             android:label="添加好友"></activity>
@@ -112,6 +113,11 @@
         <meta-data
             android:name="Bmob_APP_KEY"
             android:value="c485588624323eb816a1605550f59557" />
+
+        <!--灵犀-->
+        <meta-data
+            android:name="LINGCI_APP_KEY"
+            android:value="CqYt2014Xyz" />
 
     </application>
 

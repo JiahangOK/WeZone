@@ -13,30 +13,21 @@ import edu.bjtu.gymclub.wezone.R;
 
 public class TopicFragment extends Fragment {
     @Nullable
-    @Override
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view=  inflater.inflate(R.layout.topic_fragment,null);
-//        Button topic_button = view.findViewById(R.id.topic_1);
-//        topic_button.setOnClickListener(new View.OnClickListener() {
+
+//        Button send = view.findViewById(R.id.send);
+//        send.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                Intent intent;
 //                intent = new Intent();
-//                intent.setClass(getActivity(), TopicDetialActivity.class);
+//                intent.setClass(getActivity(), SendTopicDetailActivity.class);
 //                startActivity(intent);
 //            }
 //        });
-
-        Button send = view.findViewById(R.id.send);
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                intent = new Intent();
-                intent.setClass(getActivity(), SendTopicDetailActivity.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 }

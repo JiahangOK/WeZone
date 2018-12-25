@@ -20,6 +20,7 @@ import edu.bjtu.gymclub.wezone.R;
 public class TopicDetialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.topic_detail);
         Button send = findViewById(R.id.send);
