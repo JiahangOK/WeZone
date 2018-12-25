@@ -37,6 +37,38 @@
                 android:layout_marginBottom="0dp"
                 android:orientation="horizontal">
 
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/Button8"
+                    android:layout_width="25dp"
+                    android:layout_height="31dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/tupian"
+                    android:onClick="Photo" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="25dp"
+                    android:layout_height="31dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/yuyin" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
                 <EditText
                     android:id="@+id/editText2"
                     android:layout_width="200dp"
@@ -47,40 +79,39 @@
                     android:inputType="textPersonName"
                     android:text="Name" />
 
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
                 <Button
                     android:id="@+id/send_button"
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
+                    android:layout_width="25dp"
+                    android:layout_height="31dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="发送" />
+                    android:background="@drawable/imaginesend"
+                    android:textAlignment="center" />
 
-
-
-                <Button
-                    android:id="@+id/button10"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@drawable/voice1" />
-
-                <Button
-                    android:id="@+id/Button8"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:onClick="Photo"
-                    android:background="@drawable/picture" />
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button9"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="25dp"
+                    android:layout_height="31dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:background="@drawable/vedio"
+                    android:background="@drawable/shipin"
                     android:onClick="Vedio" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -105,11 +136,11 @@
 
                     <Button
                         android:id="@+id/button3"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
                         android:layout_gravity="right|center"
                         android:layout_weight="1"
-                        android:background="@drawable/return_button"
+                        android:background="@drawable/right"
                         android:onClick="goback" />
                 </LinearLayout>
 
@@ -121,12 +152,35 @@
 
                     <TextView
                         android:id="@+id/textView2"
-                        android:layout_width="94dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="29dp"
                         android:layout_weight="1"
                         android:text="老衲自西天来"
-                        android:textSize="20dp"></TextView>
+                        android:textColor="@color/bb_darkBackgroundColor"
+                        android:textSize="20sp"></TextView>
                 </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="63dp"
+                    android:layout_marginBottom="9dp"
+                    android:background="#00000000"
+                    app:srcCompat="@drawable/dianhua" />
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#00000000"
+                    app:srcCompat="@drawable/geren" />
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
@@ -135,8 +189,8 @@
             android:id="@+id/cardView3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView1"
             app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
