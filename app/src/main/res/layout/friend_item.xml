@@ -45,51 +45,22 @@
             <LinearLayout
                 android:layout_width="233dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top|center"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/usernames"
+                    android:id="@+id/usernamess"
                     android:layout_width="193dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif"
-                    android:text="巨型猿"
+                    android:text="这个猴子有点冷"
+                    android:textAlignment="center"
                     android:textSize="20dp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginTop="10dp"
-                    android:maxLines="1"
-                    android:text="猴子你在干什么"
-                    android:textAllCaps="false" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="61dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="15:52" />
-
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/ic_keyboard_voice_black_24dp" />
 
             </LinearLayout>
 

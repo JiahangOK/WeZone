@@ -95,13 +95,11 @@ public class MainActivity extends BaseActivity {
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 
 
-
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
         transaction.add(R.id.contentContainer, new TalkFragment());
 
         transaction.commit();
-
 
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {

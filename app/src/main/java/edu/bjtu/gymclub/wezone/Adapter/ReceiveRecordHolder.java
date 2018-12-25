@@ -1,0 +1,116 @@
+package edu.bjtu.gymclub.wezone.Adapter;
+
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+
+import butterknife.BindView;
+
+import cn.bmob.newim.bean.BmobIMAudioMessage;
+import cn.bmob.newim.bean.BmobIMMessage;
+import cn.bmob.newim.bean.BmobIMSendStatus;
+import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.newim.core.BmobDownloadManager;
+import cn.bmob.newim.listener.FileDownloadListener;
+import cn.bmob.newim.listener.MessageSendListener;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import de.hdodenhof.circleimageview.CircleImageView;
+import edu.bjtu.gymclub.wezone.R;
+
+/**
+ * 收到语音消息
+ */
+public class ReceiveRecordHolder extends BaseViewHolder {
+
+    private LinearLayout left_record;
+    private LinearLayout right_record;
+    Button button1;
+    Button button2;
+    private String currentUid = "";
+
+
+    public ReceiveRecordHolder(Context context, ViewGroup root, OnRecyclerViewListener onRecyclerViewListener) {
+        super(context, root, R.layout.item_voice, onRecyclerViewListener);
+        try {
+            currentUid = BmobUser.getCurrentUser().getObjectId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void bindData(Object o) {
+        left_record = itemView.findViewById(R.id.left_record);
+        right_record = itemView.findViewById(R.id.right_record);
+        button1 = itemView.findViewById(R.id.button1);
+        button2 = itemView.findViewById(R.id.button2);
+
+        final BmobIMMessage msg = (BmobIMMessage) o;
+        left_record.setVisibility(View.VISIBLE);
+        right_record.setVisibility(View.GONE);
+
+
+        //使用buildFromDB方法转化成指定类型的消息
+        final BmobIMAudioMessage message = BmobIMAudioMessage.buildFromDB(true, msg);
+        boolean isExists = BmobDownloadManager.isAudioExist(currentUid, message);
+        if (!isExists) {//若指定格式的录音文件不存在，则需要下载，因为其文件比较小，故放在此下载
+            BmobDownloadManager downloadTask = new BmobDownloadManager(getContext(), msg, new FileDownloadListener() {
+
+                @Override
+                public void onStart() {
+
+                    button1.setVisibility(View.INVISIBLE);//只有下载完成才显示播放的按钮
+                }
+
+                @Override
+                public void done(BmobException e) {
+                    if (e == null) {
+                        button1.setVisibility(View.VISIBLE);
+                    } else {
+
+                        button1.setVisibility(View.INVISIBLE);
+                    }
+                }
+            });
+            downloadTask.execute(message.getContent());
+        }
+//        button.setOnClickListener(new NewRecordPlayClickListener(getContext(), message, button));
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (msg.getFromId().equals(currentUid)) {// 如果是自己发送的语音消息，则播放本地地址
+                    String localPath = msg.getContent().split("&")[0];
+                    Log.e("nihao", localPath);
+                    MediaPlayer mPlayer = new MediaPlayer();
+                    try {
+                        mPlayer.setDataSource(localPath);
+                        mPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mPlayer.start();
+                } else {// 如果是收到的消息，则需要先下载后播放
+                    String localPath = BmobDownloadManager.getDownLoadFilePath(message);
+                    Log.e("nihao", localPath);
+                    MediaPlayer mPlayer = new MediaPlayer();
+                    try {
+                        mPlayer.setDataSource(localPath);
+                        mPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mPlayer.start();
+                }
+            }
+        });
+    }
+}

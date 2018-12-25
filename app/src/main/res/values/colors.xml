@@ -7,4 +7,19 @@
     <color name="colorPress">#787dd9</color>
     <color name="colorslice">#F1F3FF</color>
     <color name="base_color_text_white">#ffffff</color>
+    <color name="color_msg_system_time_bg">#20000000</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="transparent_white">#66ffffff</color>
+    <color name="white_light">#b3ffffff</color>
+    <color name="light_white">#f9f9f9</color>
+    <color name="black">#ff000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="green">#89D767</color>
+    <color name="green_dark">#5ca73c</color>
+
+    <color name="nick">#517fae</color>
+    <color name="item_bottom_text">#8e8e8e</color>
+    <color name="line_bg">#e5e5e5</color>
+    <color name="gray_divider">#d7dce1</color>
 </resources>

@@ -7,5 +7,34 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="style_smile">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 
+    <style name="style_text" parent="style_smile">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+    <style name="style_text_white" parent="style_text">
+        <item name="android:textColor">@color/base_color_text_white</item>
+    </style>
+    <style name="style_text_white_small" parent="style_text_small">
+        <item name="android:textColor">@color/base_color_text_white</item>
+    </style>
+
+    <style name="style_text_small" parent="style_smile">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="base_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/gray_divider</item>
+    </style>
+
+    <style name="base_divider_top_20" parent="base_divider">
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
 </resources>
