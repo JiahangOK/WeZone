@@ -16,52 +16,21 @@
             android:layout_height="50dp">
 
             <LinearLayout
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/spinner"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/list4"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:overlapAnchor="false" />
-                <!--android:entries="@array/item"-->
-            </LinearLayout>
-
-            <LinearLayout
                 android:layout_width="170dp"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/allmessage"
-                    android:layout_width="80dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/radio_button1"
-                    android:onClick="change"
-                    android:text="所有消息"
-                    android:textColor="#ffffff"
-                    android:textSize="13sp" />
-
-                <Button
-                    android:id="@+id/laterdeal"
-                    android:layout_width="80dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center"
-                    android:background="@drawable/radio_button"
-                    android:onClick="change1"
-                    android:text="稍后处理"
-                    android:textColor="#ffffff"
-                    android:textSize="13sp" />
+                    android:layout_weight="1"
+                    android:text="添加好友"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -72,23 +41,13 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/keyboard"
-                    android:layout_width="30dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center"
-                    android:background="@drawable/list"
-                    android:outlineAmbientShadowColor="#afa9a9"
-                    android:textColor="#ffffff"
-                    android:textSize="13sp" />
-
-                <Button
                     android:id="@+id/voice"
                     android:layout_width="30dp"
                     android:layout_height="24dp"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="center"
-                    android:background="@drawable/list2"
+                    android:onClick="goback"
+                    android:background="@drawable/return_button"
                     android:textColor="#ffffff"
                     android:textSize="13sp" />
 
@@ -105,31 +64,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-        <SearchView
-            android:id="@+id/add_friend_username"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:background="@drawable/search"
-            android:queryHint="这是搜索框"></SearchView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/add_friend_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查找" />
+            <EditText
+                android:id="@+id/add_friend_username"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/search"
+                android:queryHint="这是搜索框">
+
+            </EditText>
+
+            <Button
+                android:id="@+id/add_friend_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorPrimary"
+                android:text="查找" />
+
+        </LinearLayout>
+
     </android.support.v7.widget.CardView>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/sw_refresh"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rc_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

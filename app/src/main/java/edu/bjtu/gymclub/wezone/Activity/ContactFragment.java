@@ -16,16 +16,6 @@ public class ContactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.contact_fragment,null);
-        Button friend = view.findViewById(R.id.friend);
-        friend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                intent = new Intent();
-                intent.setClass(getActivity(), ChatActivity.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 }
