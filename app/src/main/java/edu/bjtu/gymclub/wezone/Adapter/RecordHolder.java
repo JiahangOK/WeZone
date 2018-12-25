@@ -1,11 +1,14 @@
 package edu.bjtu.gymclub.wezone.Adapter;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import butterknife.BindView;
@@ -43,7 +46,7 @@ public class RecordHolder extends BaseViewHolder  {
     @Override
     public void bindData(Object o) {
         button = itemView.findViewById(R.id.button);
-        BmobIMMessage msg = (BmobIMMessage) o;
+        final BmobIMMessage msg = (BmobIMMessage) o;
 
 
         //使用buildFromDB方法转化成指定类型的消息
@@ -70,9 +73,34 @@ public class RecordHolder extends BaseViewHolder  {
             });
             downloadTask.execute(message.getContent());
         }
-        button.setOnClickListener(new NewRecordPlayClickListener(getContext(), message, button));
-
-
-
+//        button.setOnClickListener(new NewRecordPlayClickListener(getContext(), message, button));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (msg.getFromId().equals(currentUid)) {// 如果是自己发送的语音消息，则播放本地地址
+                    String localPath = msg.getContent().split("&")[0];
+                    Log.e("nihao",localPath);
+                    MediaPlayer mPlayer = new MediaPlayer();
+                    try {
+                        mPlayer.setDataSource(localPath);
+                        mPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mPlayer.start();
+                } else {// 如果是收到的消息，则需要先下载后播放
+                    String localPath = BmobDownloadManager.getDownLoadFilePath(message);
+                    Log.e("nihao",localPath);
+                    MediaPlayer mPlayer = new MediaPlayer();
+                    try {
+                        mPlayer.setDataSource(localPath);
+                        mPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mPlayer.start();
+                }
+            }
+        });
     }
 }

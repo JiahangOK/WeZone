@@ -5,6 +5,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -119,9 +120,11 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 		}
 		if (message.getFromId().equals(currentObjectId)) {// 如果是自己发送的语音消息，则播放本地地址
 			String localPath = message.getContent().split("&")[0];
+            Log.e("nihao",localPath);
 			startPlayRecord(localPath, true);
 		} else {// 如果是收到的消息，则需要先下载后播放
 			String localPath = BmobDownloadManager.getDownLoadFilePath(message);
+            Log.e("nihao",localPath);
 			startPlayRecord(localPath, true);
 		}
 	}
