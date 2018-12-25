@@ -26,15 +26,28 @@
                 android:src="@mipmap/person"
                 app:civ_border_color="@color/colorPrimaryDark"
                 app:civ_border_width="2dp" />
-
-            <Button
+            <com.github.library.bubbleview.BubbleTextView
                 android:id="@+id/button1"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:text="[语音]" />
+                android:padding="10dp"
+                android:text="[语音]"
+                android:textColor="@android:color/white"
+                app:angle="8dp"
+                app:arrowCenter="true"
+                app:arrowHeight="10dp"
+                app:arrowLocation="left"
+                app:arrowPosition="14dp"
+                app:arrowWidth="8dp"
+                app:bubbleColor="#7EC0EE"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
 
         </LinearLayout>
 
@@ -44,16 +57,30 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:orientation="horizontal">
-
-
-            <Button
+            <com.github.library.bubbleview.BubbleTextView
                 android:id="@+id/button2"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+
+                android:layout_marginRight="10dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center"
+                android:padding="10dp"
                 android:text="[语音]"
-                android:layout_marginTop="10dp"/>
+                android:textColor="@android:color/white"
+                app:angle="8dp"
+                app:arrowCenter="true"
+                app:arrowHeight="10dp"
+                app:arrowLocation="right"
+                app:arrowPosition="14dp"
+                app:arrowWidth="8dp"
+                app:bubbleColor="#7EC0EE" />
+
+
+
+
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image2"

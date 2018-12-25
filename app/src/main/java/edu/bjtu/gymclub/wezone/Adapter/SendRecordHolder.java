@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.github.library.bubbleview.BubbleTextView;
+
 import java.io.IOException;
 
 import cn.bmob.newim.bean.BmobIMAudioMessage;
@@ -25,8 +27,8 @@ public class SendRecordHolder extends BaseViewHolder {
 
     private LinearLayout left_record;
     private LinearLayout right_record;
-    Button button1;
-    Button button2;
+    BubbleTextView button1;
+    BubbleTextView button2;
     private String currentUid = "";
 
 

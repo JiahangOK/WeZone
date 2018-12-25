@@ -15,6 +15,8 @@ import java.util.HashMap;
 import cn.bmob.newim.bean.BmobIMImageMessage;
 import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.newim.bean.BmobIMVideoMessage;
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import edu.bjtu.gymclub.wezone.R;
 
@@ -56,14 +58,14 @@ public class SendVideoHolder extends BaseViewHolder implements View.OnClickListe
         final BmobIMUserInfo info = msg.getBmobIMUserInfo();
 
         //可使用buildFromDB方法转化为指定类型的消息
-        final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
+        final BmobIMVideoMessage message = BmobIMVideoMessage.buildFromDB(false, msg);
 
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         Bitmap b = null;
         // 设置数据源，有多种重载，这里用本地文件的绝对路径
         try {
             //根据url获取缩略图
-            mmr.setDataSource(message.getRemoteUrl(), new HashMap());
+            mmr.setDataSource(message.getRemoteUrl());
             //获得第一帧图片
             b = mmr.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST);
         } catch (IllegalArgumentException e) {

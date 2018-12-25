@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.library.bubbleview.BubbleTextView;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
@@ -33,8 +35,8 @@ public class ReceiveRecordHolder extends BaseViewHolder {
 
     private LinearLayout left_record;
     private LinearLayout right_record;
-    Button button1;
-    Button button2;
+    BubbleTextView button1;
+    BubbleTextView button2;
     private String currentUid = "";
 
 

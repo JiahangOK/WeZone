@@ -3,12 +3,15 @@ package edu.bjtu.gymclub.wezone.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import cn.bmob.newim.bean.BmobIMImageMessage;
 import cn.bmob.newim.bean.BmobIMMessage;
@@ -61,7 +64,8 @@ public class SendPictureHolder extends BaseViewHolder implements View.OnClickLis
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
 
         //显示图片
-        Picasso.with(context).load(message.getRemoteUrl()).into(image2);
+        Picasso.with(context).load(new File(message.getRemoteUrl())).into(image2);
+
 
 
         image2.setOnClickListener(new View.OnClickListener() {

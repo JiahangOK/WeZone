@@ -71,49 +71,7 @@ public class ContactFragment extends Fragment {
                 query();
             }
         });
-        adapter.setOnRecyclerViewListener(new OnRecyclerViewListener() {
-            @Override
-            public void onItemClick(int position) {
-                Friend friend = adapter.getItem(position);
-                User user = friend.getFriendUser();
-                BmobIMUserInfo info = new BmobIMUserInfo(user.getObjectId(), user.getUsername(), user.getAvatar());
-                //TODO 会话：4.1、创建一个常态会话入口，好友聊天
-                BmobIMConversation conversationEntrance = BmobIM.getInstance().startPrivateConversation(info, null);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("c", conversationEntrance);
-                Intent intent;
-                intent = new Intent();
-                intent.setClass(getActivity(), ChatActivity.class);
-                intent.putExtra(getActivity().getPackageName(), bundle);
-                getActivity().startActivity(intent);
-            }
 
-            @Override
-            public boolean onItemLongClick(final int position) {
-                com.orhanobut.logger.Logger.i("长按" + position);
-                if (position == 0) {
-                    return true;
-                }
-
-                Friend friend = adapter.getItem(position);
-
-                UserModel.getInstance().deleteFriend(friend,
-                        new UpdateListener() {
-                            @Override
-                            public void done(BmobException e) {
-                                if (e == null) {
-                                    Toast.makeText(getActivity(), "好友删除成功", Toast.LENGTH_SHORT).show();
-                                    adapter.remove(position);
-                                } else {
-                                    Toast.makeText(getActivity(), "好友删除失败：" + e.getErrorCode() + ",s =" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-
-
-                return true;
-            }
-        });
     }
 
 
