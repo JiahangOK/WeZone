@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -56,6 +57,8 @@ public class PictureHolder extends BaseViewHolder implements View.OnClickListene
 
         //可使用buildFromDB方法转化为指定类型的消息
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
+
+        Picasso.with(context).load(message.getRemoteUrl()).into(imageView9);
         //显示图片
         //Picasso.get().load(message.getRemoteUrl()).into(imageView9);
 //        ImageLoaderFactory.getLoader().load(imageView9, message.getRemoteUrl(), R.mipmap.ic_launcher, new ImageLoadingListener() {
@@ -89,8 +92,6 @@ public class PictureHolder extends BaseViewHolder implements View.OnClickListene
                 intent1.setDataAndType(Uri.parse(message.getRemoteUrl()), "image/*");
                 context.startActivity(intent1);
                 intent1.getData();
-
-
             }
         });
     }

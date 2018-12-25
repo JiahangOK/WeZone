@@ -134,7 +134,9 @@ public class AllNewsList extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        query();
         EventBus.getDefault().register(this);
+
     }
 
     @Override
