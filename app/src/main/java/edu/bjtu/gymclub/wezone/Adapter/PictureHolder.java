@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+//import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 
@@ -56,28 +57,29 @@ public class PictureHolder extends BaseViewHolder implements View.OnClickListene
         //可使用buildFromDB方法转化为指定类型的消息
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
         //显示图片
-        ImageLoaderFactory.getLoader().load(imageView9, message.getRemoteUrl(), R.mipmap.ic_launcher, new ImageLoadingListener() {
-
-            @Override
-            public void onLoadingStarted(String s, View view) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String s, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-            }
-        });
+        //Picasso.get().load(message.getRemoteUrl()).into(imageView9);
+//        ImageLoaderFactory.getLoader().load(imageView9, message.getRemoteUrl(), R.mipmap.ic_launcher, new ImageLoadingListener() {
+//
+//            @Override
+//            public void onLoadingStarted(String s, View view) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadingCancelled(String s, View view) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadingFailed(String s, View view, FailReason failReason) {
+//
+//            }
+//        });failReason
 
         imageView9.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -97,6 +97,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
     private Uri videoUri;
     private Uri photeUri;
     private Uri fileUri;
+    private String mFileName1;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -399,9 +400,9 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
 //指定动作，启动相机
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
-        String mFileName = getExternalCacheDir().getAbsolutePath();
-        mFileName += "/"+ Calendar.getInstance().getTimeInMillis() + ".jpg";
-        File mVideoFile = new File(mFileName);
+        mFileName1 = getExternalCacheDir().getAbsolutePath();
+        mFileName1 += "/"+ Calendar.getInstance().getTimeInMillis() + ".jpg";
+        File mVideoFile = new File(mFileName1);
         fileUri = FileProvider.getUriForFile(this, "edu.bjtu.gymclub.wezone.fileprovider", mVideoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, 2);
@@ -439,7 +440,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
                 toast("尚未连接IM服务器");
                 return;
             }
-            sendLocalImageMessage(fileUri.getPath());
+            sendLocalImageMessage(mFileName1);
         } else{
             Log.e("niaho", Integer.toString(resultCode));
         }
