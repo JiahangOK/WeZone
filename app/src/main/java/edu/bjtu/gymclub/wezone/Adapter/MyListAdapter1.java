@@ -180,6 +180,8 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return new PictureHolder(parent.getContext(),parent,onRecyclerViewListener);
         } else if(viewType == TYPE_SEND_VOICE){
             return new RecordHolder(parent.getContext(),parent,onRecyclerViewListener);
+        } else if(viewType == TYPE_RECEIVER_VOICE){
+            return new RecordHolder(parent.getContext(),parent,onRecyclerViewListener);
         }else {//开发者自定义的其他类型，可自行处理
             return null;
         }

@@ -53,6 +53,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.bean.BmobIMAudioMessage;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMTextMessage;
@@ -121,7 +122,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
                     mRecorder.release();
                     mRecorder = null;
                     Toast.makeText(context,"录音结束",Toast.LENGTH_SHORT).show();
-
+                    sendVoiceMessage(mFileName);
                 }
                 return  false;
             }
@@ -209,6 +210,20 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         msg.setExtraMap(map);
         msg.setExtra("OK");
         mConversationManager.sendMessage(msg, listener);
+    }
+
+    /**
+     * 发送语音消息
+     *
+     * @param local
+
+     * @return void
+     * @Title: sendVoiceMessage
+     */
+    private void sendVoiceMessage(String local) {
+        //TODO 发送消息：6.5、发送本地音频文件消息
+        BmobIMAudioMessage audio = new BmobIMAudioMessage(local);
+        mConversationManager.sendMessage(audio, listener);
     }
 
 
@@ -374,11 +389,11 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
 
     public void onRecord(){
         mFileName = getExternalCacheDir().getAbsolutePath();
-        mFileName +="/"+ Calendar.getInstance().getTimeInMillis() + ".3gp";
+        mFileName +="/"+ Calendar.getInstance().getTimeInMillis() + ".amr";
 
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
         mRecorder.setOutputFile(mFileName);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
