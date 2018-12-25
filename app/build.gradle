@@ -19,6 +19,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
 }
 android {
@@ -61,4 +62,8 @@ dependencies {
 
     implementation 'com.orhanobut:logger:1.4'
     implementation 'org.greenrobot:eventbus:3.0.0'
+
+
+
+
 }

@@ -24,6 +24,10 @@ allprojects {
         maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
         maven { url 'https://jitpack.io' }
     }
+
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:3.2.0-alpha11'
+//    }
 }
 
 task clean(type: Delete) {
