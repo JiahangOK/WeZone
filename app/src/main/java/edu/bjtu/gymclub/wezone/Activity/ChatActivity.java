@@ -59,6 +59,7 @@ import cn.bmob.newim.bean.BmobIMImageMessage;
 import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMTextMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.newim.bean.BmobIMVideoMessage;
 import cn.bmob.newim.core.BmobIMClient;
 import cn.bmob.newim.core.BmobRecordManager;
 import cn.bmob.newim.core.ConnectionStatus;
@@ -95,7 +96,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
     private MediaPlayer mPlayer;
     private Uri videoUri;
     private Uri photeUri;
-
+    private Uri fileUri;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -395,9 +396,14 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
 
     public void Photo(View view){
         Intent intent = new Intent();
-        //指定动作，启动相机
+//指定动作，启动相机
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
+        String mFileName = getExternalCacheDir().getAbsolutePath();
+        mFileName += "/"+ Calendar.getInstance().getTimeInMillis() + ".jpg";
+        File mVideoFile = new File(mFileName);
+        fileUri = FileProvider.getUriForFile(this, "edu.bjtu.gymclub.wezone.fileprovider", mVideoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, 2);
     }
 
@@ -428,13 +434,12 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
             videoUri = intent.getData();
             Log.e("niaho", videoUri.toString());
             //mVideoView.setVideoURI(videoUri);
-        }else if(requestCode == 1 && resultCode == RESULT_OK) {
-            photeUri = intent.getData();
+        }else if(requestCode == 2 && resultCode == RESULT_OK) {
             if (BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
                 toast("尚未连接IM服务器");
                 return;
             }
-            sendLocalImageMessage(photeUri.getPath());
+            sendLocalImageMessage(fileUri.getPath());
         } else{
             Log.e("niaho", Integer.toString(resultCode));
         }
@@ -447,6 +452,15 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         //正常情况下，需要调用系统的图库或拍照功能获取到图片的本地地址，开发者只需要将本地的文件地址传过去就可以发送文件类型的消息
         BmobIMImageMessage image = new BmobIMImageMessage(photeUrl);
         mConversationManager.sendMessage(image, listener);
+    }
+
+    /**
+     * 发送本地视频文件
+     */
+    private void sendLocalVideoMessage(String videoUrl) {
+        BmobIMVideoMessage video = new BmobIMVideoMessage(videoUrl);
+        //TODO 发送消息：6.6、发送本地视频文件消息
+        mConversationManager.sendMessage(video, listener);
     }
 
     @Override

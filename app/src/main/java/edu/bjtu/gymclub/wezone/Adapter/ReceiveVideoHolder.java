@@ -3,16 +3,16 @@ package edu.bjtu.gymclub.wezone.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import android.widget.VideoView;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 
 import butterknife.BindView;
 
@@ -21,21 +21,17 @@ import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
 import cn.bmob.v3.BmobUser;
 import edu.bjtu.gymclub.wezone.R;
-import edu.bjtu.gymclub.wezone.util.ImageLoaderFactory;
 
 /**
  * 同意添加好友的agree类型
  */
-public class PictureHolder extends BaseViewHolder implements View.OnClickListener, View.OnLongClickListener {
-
+public class ReceiveVideoHolder extends BaseViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     protected ImageView imageView9;
 
-
     private String currentUid = "";
 
-
-    public PictureHolder(Context context, ViewGroup root, OnRecyclerViewListener onRecyclerViewListener) {
+    public ReceiveVideoHolder(Context context, ViewGroup root, OnRecyclerViewListener onRecyclerViewListener) {
         super(context, root, R.layout.item_photo, onRecyclerViewListener);
         try {
             currentUid = BmobUser.getCurrentUser().getObjectId();
@@ -55,43 +51,33 @@ public class PictureHolder extends BaseViewHolder implements View.OnClickListene
 
         //可使用buildFromDB方法转化为指定类型的消息
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
-        //显示图片
-        ImageLoaderFactory.getLoader().load(imageView9, message.getRemoteUrl(), R.mipmap.ic_launcher, new ImageLoadingListener() {
 
-            @Override
-            public void onLoadingStarted(String s, View view) {
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        Bitmap b = null;
+        // 设置数据源，有多种重载，这里用本地文件的绝对路径
+        try {
+            //根据url获取缩略图
+            mmr.setDataSource(message.getRemoteUrl(), new HashMap());
+            //获得第一帧图片
+            b = mmr.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } finally {
+            mmr.release();
+        }
 
-            }
-
-            @Override
-            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String s, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-            }
-        });
+        imageView9.setImageBitmap(b);
 
         imageView9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(Intent.ACTION_VIEW);
                 intent1.addCategory(Intent.CATEGORY_DEFAULT);
-                intent1.setDataAndType(Uri.parse(message.getRemoteUrl()), "image/*");
+                intent1.setDataAndType(Uri.parse(message.getRemoteUrl()), "video/*");
                 context.startActivity(intent1);
-                intent1.getData();
-
-
             }
         });
+
+
     }
-
-
 }

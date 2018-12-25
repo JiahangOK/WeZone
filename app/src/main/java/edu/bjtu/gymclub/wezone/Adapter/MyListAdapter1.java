@@ -174,7 +174,9 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if (viewType == TYPE_AGREE) {
             return new AgreeHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_SEND_VIDEO) {
-            return new VideoHolder(parent.getContext(), parent, onRecyclerViewListener);
+            return new ReceiveVideoHolder(parent.getContext(), parent, onRecyclerViewListener);
+        } else if (viewType == TYPE_RECEIVER_VIDEO) {
+            return new PictureHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_SEND_IMAGE) {
             return new PictureHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_RECEIVER_IMAGE) {
