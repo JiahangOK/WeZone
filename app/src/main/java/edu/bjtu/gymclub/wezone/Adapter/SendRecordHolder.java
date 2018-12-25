@@ -57,7 +57,7 @@ public class SendRecordHolder extends BaseViewHolder {
         //使用buildFromDB方法转化成指定类型的消息
         final BmobIMAudioMessage message = BmobIMAudioMessage.buildFromDB(true, msg);
         File audioFile = new File(msg.getContent().split("&")[0]);
-        boolean isExists = BmobDownloadManager.isAudioExist(currentUid, message);
+        boolean isExists = audioFile.isFile()&&audioFile.exists();
         if (!isExists) {//若指定格式的录音文件不存在，则需要下载，因为其文件比较小，故放在此下载
             BmobDownloadManager downloadTask = new BmobDownloadManager(getContext(), msg, new FileDownloadListener() {
 

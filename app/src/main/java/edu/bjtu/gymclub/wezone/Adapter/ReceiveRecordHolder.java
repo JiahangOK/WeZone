@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.github.library.bubbleview.BubbleTextView;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
@@ -63,7 +64,8 @@ public class ReceiveRecordHolder extends BaseViewHolder {
 
         //使用buildFromDB方法转化成指定类型的消息
         final BmobIMAudioMessage message = BmobIMAudioMessage.buildFromDB(true, msg);
-        boolean isExists = BmobDownloadManager.isAudioExist(currentUid, message);
+        File audioFile = new File(msg.getContent().split("&")[0]);
+        boolean isExists = audioFile.isFile()&&audioFile.exists();
         if (!isExists) {//若指定格式的录音文件不存在，则需要下载，因为其文件比较小，故放在此下载
             BmobDownloadManager downloadTask = new BmobDownloadManager(getContext(), msg, new FileDownloadListener() {
 
