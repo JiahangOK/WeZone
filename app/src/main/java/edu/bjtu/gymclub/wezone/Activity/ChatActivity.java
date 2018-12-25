@@ -1,18 +1,25 @@
 package edu.bjtu.gymclub.wezone.Activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -35,14 +42,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.orhanobut.logger.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
@@ -80,8 +88,15 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
     LinearLayout ll_chat;
     BmobRecordManager recordManager;
     Button btn_speak;
+    private String mFileName;
+    private MediaRecorder mRecorder;
+    private MediaPlayer mPlayer;
+    private Uri videoUri;
+    private Uri photeUri;
 
 
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,10 +108,30 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         sw_refresh = findViewById(R.id.sw_refresh);
         ll_chat = findViewById(R.id.root_View);
         btn_speak = findViewById(R.id.button10);
+        final Context context = this;
+
+        btn_speak.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                if (action == MotionEvent.ACTION_DOWN) {
+                    onRecord();
+                } else if (action == MotionEvent.ACTION_UP) {
+                    mRecorder.stop();
+                    mRecorder.release();
+                    mRecorder = null;
+                    Toast.makeText(context,"录音结束",Toast.LENGTH_SHORT).show();
+
+                }
+                return  false;
+            }
+        });
 
         //设置标题为用户名
         TextView textView2 = findViewById(R.id.textView2);
         textView2.setText(mConversationManager.getConversationTitle());
+
+
 
 
         //发送按钮的绑定
@@ -117,6 +152,19 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
 
         initSwipeLayout();
         initBottomView();
+
+
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){ //表示未授权时
+            Toast.makeText(this,"还没有进行授权!",Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO,Manifest.permission.CAMERA},1);
+        }else{
+            Toast.makeText(this,"已经授权成功了!",Toast.LENGTH_SHORT).show();
+        }
 
 
         //发送按钮的响应事件
@@ -214,7 +262,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         public void onProgress(int value) {
             super.onProgress(value);
             //文件类型的消息才有进度值
-            Logger.i("onProgress：" + value);
+            //Logger.i("onProgress：" + value);
         }
 
         @Override
@@ -302,18 +350,6 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
     }
 
     public void Vedio(View view) {
-        ActivityCompat.requestPermissions(this,
-                new String[]{android.Manifest.permission.CAMERA}, CAMERA_OK);
-        startVideo();
-    }
-
-
-    /**
-     * 启动相机，创建文件，并要求返回uri
-     */
-
-
-    private void startVideo() {
         Intent intent = new Intent();
         //指定动作，启动相机
         intent.setAction(MediaStore.ACTION_VIDEO_CAPTURE);
@@ -323,22 +359,56 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
 
         //启动相机并要求返回结果
         startActivityForResult(intent, 1);
+        BmobIMMessage message = new BmobIMMessage();
+        message.setMsgType("8");
+        mConversationManager.sendMessage(message, listener);
     }
 
+    public void Photo(View view){
+        Intent intent = new Intent();
+        //指定动作，启动相机
+        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        startActivityForResult(intent, 2);
+    }
+
+    public void onRecord(){
+        mFileName = getExternalCacheDir().getAbsolutePath();
+        mFileName +="/"+ Calendar.getInstance().getTimeInMillis() + ".3gp";
+
+        mRecorder = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFile(mFileName);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+        try {
+            mRecorder.prepare();
+        } catch (IOException e) {
+            Toast.makeText(this,"创建录音失败",Toast.LENGTH_SHORT).show();
+        }
+
+        mRecorder.start();
+        Toast.makeText(this,"开始录制!",Toast.LENGTH_SHORT).show();
+    }
+    
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 1 && resultCode == -1) {
-            Uri videoUri = intent.getData();
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            videoUri = intent.getData();
             Log.e("niaho", videoUri.toString());
             //mVideoView.setVideoURI(videoUri);
-        } else {
+        }else if(requestCode == 1 && resultCode == RESULT_OK) {
+            photeUri = intent.getData();
+        } else{
             Log.e("niaho", Integer.toString(resultCode));
         }
     }
 
     @Override
     public void onMessageReceive(List<MessageEvent> list) {
-        Logger.i("聊天页面接收到消息：" + list.size());
+        //Logger.i("聊天页面接收到消息：" + list.size());
         //当注册页面消息监听时候，有消息（包含离线消息）到来时会回调该方法
         for (int i = 0; i < list.size(); i++) {
             addMessage2Chat(list.get(i));
@@ -362,7 +432,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
             }
             scrollToBottom();
         } else {
-            Logger.i("不是与当前聊天对象的消息");
+
         }
     }
 
@@ -413,41 +483,20 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         hideSoftInputView();
         super.onDestroy();
     }
-
-
-//     int count = 0;
-//    @Override\\    /    public void onClick(View v) {
-//
-//        if (v.getId() == R.id.send_button) {
-//            count++;
-//            BmobIMUserInfo info = new BmobIMUserInfo();
-//            info.setAvatar("填写接收者的头像");
-//            info.setUserId("1111");
-//            info.setName("填写接收者的名字");
-//            BmobIM.getInstance().startPrivateConversation(info, new ConversationListener() {
-//                @Override
-//                public void done(BmobIMConversation c, BmobException e) {
-//                    if (e == null) {
-//                        isOpenConversation = true;
-//                        //在此跳转到聊天页面或者直接转化
-//                        mBmobIMConversation = BmobIMConversation.obtain(BmobIMClient.getInstance(), c);
-//                        tv_message.append("发送者：" + "你好"+Integer.toString(count) + "\n");
-//                        BmobIMTextMessage msg = new BmobIMTextMessage();
-//                        msg.setContent("你好"+Integer.toString(count));
-//                        mBmobIMConversation.sendMessage(msg, new MessageSendListener() {
-//                            @Override
-//                            public void done(BmobIMMessage msg, BmobException e) {
-//                                if (e != null) {
-//
-//                                } else {
-//                                }
-//                            }
-//                        });
-//                    } else {
-//                        Toast.makeText(ChatActivity.this, "开启会话出错", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        }
-//    }
+    
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){ //同意权限申请
+                    Toast.makeText(this,"权限被接受了",Toast.LENGTH_SHORT).show();
+                }else { //拒绝权限申请
+                    Toast.makeText(this,"权限被拒绝了",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }

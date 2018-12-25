@@ -70,6 +70,7 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:onClick="Photo"
                     android:background="@drawable/picture" />
 
                 <Button
