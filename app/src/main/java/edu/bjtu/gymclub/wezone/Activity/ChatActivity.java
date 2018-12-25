@@ -249,7 +249,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         record_list.setLayoutManager(layoutManager);
         myAdapter = new MyListAdapter1(this, mConversationManager);
         record_list.setAdapter(myAdapter);
-        queryMessages(null);
+
         ll_chat.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
