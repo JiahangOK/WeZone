@@ -27,4 +27,14 @@
     <style name="style_text_small" parent="style_smile">
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>
+
+    <style name="base_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/gray_divider</item>
+    </style>
+
+    <style name="base_divider_top_20" parent="base_divider">
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
 </resources>

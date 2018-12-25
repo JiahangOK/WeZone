@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="这是要发的帖子"/>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_main"
+   >
+
+
+    <EditText
+        android:id="@+id/send_text"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:gravity="top"
+        android:text="这一刻的想法......"
+        android:textColor="@color/item_bottom_text"/>
+
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="91dp"
+        android:layout_height="89dp"
+        android:paddingLeft="4dp"
+        android:src="@drawable/add_pic" />
+
     <Button
         android:id="@+id/send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="发帖"/>
+        android:text="发帖" />
+
+
+
 
 </LinearLayout>
+
+
