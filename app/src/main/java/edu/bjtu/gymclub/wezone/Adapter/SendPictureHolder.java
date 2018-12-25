@@ -2,42 +2,38 @@ package edu.bjtu.gymclub.wezone.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.squareup.picasso.Picasso;
-//import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
-
-import butterknife.BindView;
 
 import cn.bmob.newim.bean.BmobIMImageMessage;
 import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
 import cn.bmob.v3.BmobUser;
 import edu.bjtu.gymclub.wezone.R;
-import edu.bjtu.gymclub.wezone.util.ImageLoaderFactory;
+
+//import com.squareup.picasso.Picasso;
 
 /**
  * 同意添加好友的agree类型
  */
-public class PictureHolder extends BaseViewHolder implements View.OnClickListener, View.OnLongClickListener {
+public class SendPictureHolder extends BaseViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
 
-    protected ImageView imageView9;
+    LinearLayout left_record;
+    LinearLayout right_record;
+    ImageView image1;
+    ImageView image2;
 
 
     private String currentUid = "";
 
 
-    public PictureHolder(Context context, ViewGroup root, OnRecyclerViewListener onRecyclerViewListener) {
+    public SendPictureHolder(Context context, ViewGroup root, OnRecyclerViewListener onRecyclerViewListener) {
         super(context, root, R.layout.item_photo, onRecyclerViewListener);
         try {
             currentUid = BmobUser.getCurrentUser().getObjectId();
@@ -48,7 +44,13 @@ public class PictureHolder extends BaseViewHolder implements View.OnClickListene
 
     @Override
     public void bindData(Object o) {
-        imageView9 = itemView.findViewById(R.id.imageView9);
+        image1 = itemView.findViewById(R.id.image1);
+        image2 = itemView.findViewById(R.id.image2);
+        left_record = itemView.findViewById(R.id.left_record);
+        right_record = itemView.findViewById(R.id.right_record);
+
+        right_record.setVisibility(View.VISIBLE);
+        left_record.setVisibility(View.GONE);
 
 
         BmobIMMessage msg = (BmobIMMessage) o;
@@ -58,33 +60,11 @@ public class PictureHolder extends BaseViewHolder implements View.OnClickListene
         //可使用buildFromDB方法转化为指定类型的消息
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
 
-        Picasso.with(context).load(message.getRemoteUrl()).into(imageView9);
         //显示图片
-        //Picasso.get().load(message.getRemoteUrl()).into(imageView9);
-//        ImageLoaderFactory.getLoader().load(imageView9, message.getRemoteUrl(), R.mipmap.ic_launcher, new ImageLoadingListener() {
-//
-//            @Override
-//            public void onLoadingStarted(String s, View view) {
-//
-//            }
-//
-//            @Override
-//            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-//
-//            }
-//
-//            @Override
-//            public void onLoadingCancelled(String s, View view) {
-//
-//            }
-//
-//            @Override
-//            public void onLoadingFailed(String s, View view, FailReason failReason) {
-//
-//            }
-//        });failReason
+        Picasso.with(context).load(message.getRemoteUrl()).into(image2);
 
-        imageView9.setOnClickListener(new View.OnClickListener() {
+
+        image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(Intent.ACTION_VIEW);

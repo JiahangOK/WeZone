@@ -174,17 +174,17 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if (viewType == TYPE_AGREE) {
             return new AgreeHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_SEND_VIDEO) {
-            return new ReceiveVideoHolder(parent.getContext(), parent, onRecyclerViewListener);
+            return new SendVideoHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_RECEIVER_VIDEO) {
-            return new PictureHolder(parent.getContext(), parent, onRecyclerViewListener);
+            return new ReceiveVideoHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_SEND_IMAGE) {
-            return new PictureHolder(parent.getContext(), parent, onRecyclerViewListener);
+            return new SendPictureHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_RECEIVER_IMAGE) {
-            return new PictureHolder(parent.getContext(), parent, onRecyclerViewListener);
+            return new ReceivePictureHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_SEND_VOICE) {
-            return new RecordHolder(parent.getContext(), parent, onRecyclerViewListener);
+            return new SendRecordHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else if (viewType == TYPE_RECEIVER_VOICE) {
-            return new RecordHolder(parent.getContext(), parent, onRecyclerViewListener);
+            return new ReceiveRecordHolder(parent.getContext(), parent, onRecyclerViewListener);
         } else {//开发者自定义的其他类型，可自行处理
             return null;
         }
@@ -196,11 +196,6 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (holder instanceof AgreeHolder) {//同意添加好友成功后的消息
             ((AgreeHolder) holder).showTime(shouldShowTime(position));
         }
-//        if (holder instanceof ReceiveTextHolder) {
-//            ((ReceiveTextHolder) holder).showTime(shouldShowTime(position));
-//        } else if (holder instanceof SendTextHolder) {
-//            ((SendTextHolder) holder).showTime(shouldShowTime(position));
-//        }
     }
 
     @Override
@@ -223,20 +218,6 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-//    public class MyViewHolder extends RecyclerView.ViewHolder {
-//        private LinearLayout layout1;
-//        private LinearLayout layout2;
-//        private BubbleTextView bubbleTextView1;
-//        private BubbleTextView bubbleTextView2;
-//
-//        public MyViewHolder(View itemView) {
-//            super(itemView);
-//            layout1 = itemView.findViewById(R.id.left_record);
-//            layout2 = itemView.findViewById(R.id.right_record);
-//            bubbleTextView1 = itemView.findViewById(R.id.receiver_left);
-//            bubbleTextView2 = itemView.findViewById(R.id.receiver_right);
-//        }
-//    }
 
     private boolean shouldShowTime(int position) {
         if (position == 0) {

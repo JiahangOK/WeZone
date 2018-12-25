@@ -9,15 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-
-import butterknife.BindView;
 
 import cn.bmob.newim.bean.BmobIMImageMessage;
 import cn.bmob.newim.bean.BmobIMMessage;
@@ -28,7 +21,7 @@ import edu.bjtu.gymclub.wezone.R;
 /**
  * 同意添加好友的agree类型
  */
-public class ReceiveVideoHolder extends BaseViewHolder implements View.OnClickListener, View.OnLongClickListener {
+public class SendVideoHolder extends BaseViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     LinearLayout left_record;
     LinearLayout right_record;
@@ -38,7 +31,7 @@ public class ReceiveVideoHolder extends BaseViewHolder implements View.OnClickLi
 
     private String currentUid = "";
 
-    public ReceiveVideoHolder(Context context, ViewGroup root, OnRecyclerViewListener onRecyclerViewListener) {
+    public SendVideoHolder(Context context, ViewGroup root, OnRecyclerViewListener onRecyclerViewListener) {
         super(context, root, R.layout.item_photo, onRecyclerViewListener);
         try {
             currentUid = BmobUser.getCurrentUser().getObjectId();
@@ -54,8 +47,8 @@ public class ReceiveVideoHolder extends BaseViewHolder implements View.OnClickLi
         left_record = itemView.findViewById(R.id.left_record);
         right_record = itemView.findViewById(R.id.right_record);
 
-        left_record.setVisibility(View.VISIBLE);
-        right_record.setVisibility(View.GONE);
+        right_record.setVisibility(View.VISIBLE);
+        left_record.setVisibility(View.GONE);
 
 
         BmobIMMessage msg = (BmobIMMessage) o;
@@ -80,9 +73,9 @@ public class ReceiveVideoHolder extends BaseViewHolder implements View.OnClickLi
         }
 
 
-        image1.setImageBitmap(b);
+        image2.setImageBitmap(b);
 
-        image1.setOnClickListener(new View.OnClickListener() {
+        image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(Intent.ACTION_VIEW);

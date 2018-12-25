@@ -8,7 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:id="@+id/left_record"
@@ -20,19 +21,20 @@
                 android:id="@+id/profile_image1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/person"
                 app:civ_border_color="@color/colorPrimaryDark"
-                app:civ_border_width="2dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"/>
+                app:civ_border_width="2dp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:layout_marginTop="10dp"
+                android:text="[语音]" />
 
         </LinearLayout>
 
@@ -49,15 +51,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:layout_gravity="center"
+                android:text="[语音]"
+                android:layout_marginTop="10dp"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_marginTop="20dp"
-
-                android:layout_marginRight="10dp"
                 android:id="@+id/profile_image2"
+
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/person"
                 app:civ_border_color="@color/colorPrimaryDark"
                 app:civ_border_width="2dp"

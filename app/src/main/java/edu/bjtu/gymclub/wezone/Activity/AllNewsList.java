@@ -67,6 +67,7 @@ public class AllNewsList extends Fragment {
         newslist.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         newslist.setLayoutManager(linearLayoutManager);
+        query();
         sw_refresh.setEnabled(true);
         setListener();
         //initRecyclerView(data);
@@ -149,7 +150,6 @@ public class AllNewsList extends Fragment {
      * 查询本地会话
      */
     public void query() {
-
         adapter.bindDatas(getConversations());
         adapter.notifyDataSetChanged();
         sw_refresh.setRefreshing(false);
