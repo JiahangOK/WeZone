@@ -5,8 +5,8 @@
     android:id="@+id/root_View"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentEnd="false"
     android:layout_alignParentBottom="false"
+    android:layout_alignParentEnd="false"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
@@ -54,6 +54,8 @@
                     android:layout_weight="1"
                     android:text="发送" />
 
+
+
                 <Button
                     android:id="@+id/button10"
                     android:layout_width="40dp"
@@ -76,8 +78,8 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:onClick="Vedio"
-                    android:background="@drawable/vedio" />
+                    android:background="@drawable/vedio"
+                    android:onClick="Vedio" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -121,7 +123,8 @@
                         android:layout_width="94dp"
                         android:layout_height="29dp"
                         android:layout_weight="1"
-                        android:text="老衲自西天来" />
+                        android:text="老衲自西天来"
+                        android:textSize="20dp"></TextView>
                 </LinearLayout>
             </RelativeLayout>
 
@@ -131,16 +134,24 @@
             android:id="@+id/cardView3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView1"
             app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/record_list"
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/sw_refresh"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#eceaea" />
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/record_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#eceaea" />
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+
         </android.support.v7.widget.CardView>
 
     </android.support.constraint.ConstraintLayout>

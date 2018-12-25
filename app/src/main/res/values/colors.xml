@@ -7,4 +7,5 @@
     <color name="colorPress">#787dd9</color>
     <color name="colorslice">#F1F3FF</color>
     <color name="base_color_text_white">#ffffff</color>
+    <color name="color_msg_system_time_bg">#20000000</color>
 </resources>

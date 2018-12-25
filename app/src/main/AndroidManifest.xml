@@ -82,6 +82,9 @@
             android:name=".Activity.SecurityActivity"
             android:label="账号与安全"></activity>
         <activity
+            android:name=".Activity.NewFriendActivity"
+            android:label="新朋友"></activity>
+        <activity
             android:name=".Activity.InformActivity"
             android:label="通知管理"></activity>
         <activity
