@@ -71,8 +71,13 @@ public class AddFriendActivity extends BaseActivity {
             }
         });
 
-
+        getSupportActionBar().hide();
     }
+
+    public void goback(View view) {
+        this.finish();
+    }
+
 
     public void query() {
         String name = add_friend_username.getText().toString();
