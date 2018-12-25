@@ -55,6 +55,7 @@ import java.util.logging.Logger;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMAudioMessage;
 import cn.bmob.newim.bean.BmobIMConversation;
+import cn.bmob.newim.bean.BmobIMImageMessage;
 import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMTextMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
@@ -416,9 +417,23 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
             //mVideoView.setVideoURI(videoUri);
         }else if(requestCode == 1 && resultCode == RESULT_OK) {
             photeUri = intent.getData();
+            if (BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
+                toast("尚未连接IM服务器");
+                return;
+            }
+            sendLocalImageMessage(photeUri.getPath());
         } else{
             Log.e("niaho", Integer.toString(resultCode));
         }
+    }
+    /**
+     * 发送本地图片文件
+     */
+    public void sendLocalImageMessage(String photeUrl) {
+        //TODO 发送消息：6.2、发送本地图片消息
+        //正常情况下，需要调用系统的图库或拍照功能获取到图片的本地地址，开发者只需要将本地的文件地址传过去就可以发送文件类型的消息
+        BmobIMImageMessage image = new BmobIMImageMessage(photeUrl);
+        mConversationManager.sendMessage(image, listener);
     }
 
     @Override
