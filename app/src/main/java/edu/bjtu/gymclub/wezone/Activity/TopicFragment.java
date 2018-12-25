@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import edu.bjtu.gymclub.wezone.R;
 
@@ -17,6 +18,16 @@ public class TopicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view=  inflater.inflate(R.layout.topic_fragment,null);
+         TextView txt_right_title = view.findViewById(R.id.txt_right_title);
+         txt_right_title.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent;
+                intent = new Intent();
+                intent.setClass(getActivity(), SendTopicDetailActivity.class);
+                startActivity(intent);
+             }
+         });
 
 //        Button send = view.findViewById(R.id.send);
 //        send.setOnClickListener(new View.OnClickListener() {

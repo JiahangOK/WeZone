@@ -54,7 +54,7 @@ public class Friend_Holder extends BaseViewHolder {
         final Friend friend = (Friend) o;
         User user = friend.getFriendUser();
 
-        ImageLoaderFactory.getLoader().loadAvator(avatar, user.getAvatar(), R.mipmap.touxiang);
+        ImageLoaderFactory.getLoader().loadAvator(avatar, user.getAvatar(), R.mipmap.person);
         username.setText(user.getUsername());
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override

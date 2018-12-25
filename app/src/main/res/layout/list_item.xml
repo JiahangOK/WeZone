@@ -84,12 +84,6 @@
                     android:layout_gravity="center"
                     android:text="15:52" />
 
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/ic_keyboard_voice_black_24dp" />
 
             </LinearLayout>
 

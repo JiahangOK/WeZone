@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import cn.bmob.newim.BmobIM;
 import edu.bjtu.gymclub.wezone.Model.UserModel;
@@ -22,7 +23,8 @@ public class PersonalFragment extends Fragment {
         ImageButton security = view.findViewById(R.id.securitySetting);
         ImageButton inform = view.findViewById(R.id.informSetting);
         Button logout = view.findViewById(R.id.logout);
-
+        TextView textView5 = view.findViewById(R.id.textView5);
+        textView5.setText(UserModel.getInstance().getCurrentUser().getUsername());
         security.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

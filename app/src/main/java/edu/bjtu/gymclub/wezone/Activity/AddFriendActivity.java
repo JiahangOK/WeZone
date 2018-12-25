@@ -102,8 +102,6 @@ public class AddFriendActivity extends BaseActivity {
                         }
                     }
                 }
-
-
         );
     }
 }
