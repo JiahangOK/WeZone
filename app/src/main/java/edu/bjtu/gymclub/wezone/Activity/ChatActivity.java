@@ -98,6 +98,8 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
     private Uri photeUri;
     private Uri fileUri;
     private String mFileName1;
+    private String mFileName2;
+    private Uri fileUri2;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -388,11 +390,16 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         //添加权限
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
+
+        mFileName2 = getExternalCacheDir().getAbsolutePath();
+        mFileName2 += "/"+ Calendar.getInstance().getTimeInMillis() + ".mp4";
+        File mVideoFile = new File(mFileName2);
+        fileUri2 = FileProvider.getUriForFile(this, "edu.bjtu.gymclub.wezone.fileprovider", mVideoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri2);
+
         //启动相机并要求返回结果
         startActivityForResult(intent, 1);
-        BmobIMMessage message = new BmobIMMessage();
-        message.setMsgType("8");
-        mConversationManager.sendMessage(message, listener);
+
     }
 
     public void Photo(View view){
@@ -432,8 +439,14 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            videoUri = intent.getData();
-            Log.e("niaho", videoUri.toString());
+
+
+            if (BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
+                toast("尚未连接IM服务器");
+                return;
+            }
+            sendLocalVideoMessage(mFileName2);
+
             //mVideoView.setVideoURI(videoUri);
         }else if(requestCode == 2 && resultCode == RESULT_OK) {
             if (BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {

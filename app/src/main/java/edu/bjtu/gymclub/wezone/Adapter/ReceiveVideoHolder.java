@@ -22,6 +22,7 @@ import butterknife.BindView;
 import cn.bmob.newim.bean.BmobIMImageMessage;
 import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.newim.bean.BmobIMVideoMessage;
 import cn.bmob.v3.BmobUser;
 import edu.bjtu.gymclub.wezone.R;
 
@@ -63,7 +64,7 @@ public class ReceiveVideoHolder extends BaseViewHolder implements View.OnClickLi
         final BmobIMUserInfo info = msg.getBmobIMUserInfo();
 
         //可使用buildFromDB方法转化为指定类型的消息
-        final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
+        final BmobIMVideoMessage message = BmobIMVideoMessage.buildFromDB(false, msg);
 
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         Bitmap b = null;

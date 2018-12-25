@@ -55,8 +55,6 @@ public class SendTextHolder extends BaseViewHolder implements View.OnClickListen
         layout2.setVisibility(View.VISIBLE);
         layout1.setVisibility(View.GONE);
         bubbleTextView2.setText(content);
-
-
     }
 
 }
