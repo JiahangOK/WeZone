@@ -69,6 +69,10 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
         notifyDataSetChanged();
     }
 
+    public void addMessage(int last,BmobIMMessage message) {
+        msgs.addAll(Arrays.asList(message));
+        notifyItemInserted(last);
+    }
     public void addMessage(BmobIMMessage message) {
         msgs.addAll(Arrays.asList(message));
         notifyDataSetChanged();
@@ -197,6 +201,8 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((AgreeHolder) holder).showTime(shouldShowTime(position));
         }
     }
+
+
 
     @Override
     public int getItemViewType(int position) {

@@ -116,7 +116,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         btn_speak = findViewById(R.id.button10);
         final Context context = this;
 
-        btn_speak.setOnTouchListener(new View.OnTouchListener(){
+        btn_speak.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
@@ -126,20 +126,18 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
                     mRecorder.stop();
                     mRecorder.release();
                     mRecorder = null;
-                    Toast.makeText(context,"录音结束",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "录音结束", Toast.LENGTH_SHORT).show();
 
                     getRedpermission();
                     sendVoiceMessage(mFileName);
                 }
-                return  false;
+                return false;
             }
         });
 
         //设置标题为用户名
         TextView textView2 = findViewById(R.id.textView2);
         textView2.setText(mConversationManager.getConversationTitle());
-
-
 
 
         //发送按钮的绑定
@@ -162,16 +160,15 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         initBottomView();
 
 
-
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){ //表示未授权时
-            Toast.makeText(this,"还没有进行授权!",Toast.LENGTH_SHORT).show();
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO,Manifest.permission.CAMERA},1);
-        }else{
-            Toast.makeText(this,"已经授权成功了!",Toast.LENGTH_SHORT).show();
+                        Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) { //表示未授权时
+            Toast.makeText(this, "还没有进行授权!", Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA}, 1);
+        } else {
+            Toast.makeText(this, "已经授权成功了!", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -200,13 +197,13 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
 
     }
 
-    public void getRedpermission(){
+    public void getRedpermission() {
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){ //表示未授权时
-            Toast.makeText(this,"还没有进行授权!",Toast.LENGTH_SHORT).show();
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO,Manifest.permission.CAMERA},1);
-        }else{
-            Toast.makeText(this,"已经授权成功了!",Toast.LENGTH_SHORT).show();
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) { //表示未授权时
+            Toast.makeText(this, "还没有进行授权!", Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA}, 1);
+        } else {
+            Toast.makeText(this, "已经授权成功了!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -234,7 +231,6 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
      * 发送语音消息
      *
      * @param local
-
      * @return void
      * @Title: sendVoiceMessage
      */
@@ -392,7 +388,7 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
 
 
         mFileName2 = getExternalCacheDir().getAbsolutePath();
-        mFileName2 += "/"+ Calendar.getInstance().getTimeInMillis() + ".mp4";
+        mFileName2 += "/" + Calendar.getInstance().getTimeInMillis() + ".mp4";
         File mVideoFile = new File(mFileName2);
         fileUri2 = FileProvider.getUriForFile(this, "edu.bjtu.gymclub.wezone.fileprovider", mVideoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri2);
@@ -402,22 +398,22 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
 
     }
 
-    public void Photo(View view){
+    public void Photo(View view) {
         Intent intent = new Intent();
 //指定动作，启动相机
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         mFileName1 = getExternalCacheDir().getAbsolutePath();
-        mFileName1 += "/"+ Calendar.getInstance().getTimeInMillis() + ".jpg";
+        mFileName1 += "/" + Calendar.getInstance().getTimeInMillis() + ".jpg";
         File mVideoFile = new File(mFileName1);
         fileUri = FileProvider.getUriForFile(this, "edu.bjtu.gymclub.wezone.fileprovider", mVideoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, 2);
     }
 
-    public void onRecord(){
+    public void onRecord() {
         mFileName = getExternalCacheDir().getAbsolutePath();
-        mFileName +="/"+ Calendar.getInstance().getTimeInMillis() + ".amr";
+        mFileName += "/" + Calendar.getInstance().getTimeInMillis() + ".amr";
 
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -428,14 +424,14 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         try {
             mRecorder.prepare();
         } catch (IOException e) {
-            Toast.makeText(this,"创建录音失败",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "创建录音失败", Toast.LENGTH_SHORT).show();
         }
 
         mRecorder.start();
-        Toast.makeText(this,"开始录制!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "开始录制!", Toast.LENGTH_SHORT).show();
     }
-    
-    
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
@@ -448,16 +444,17 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
             sendLocalVideoMessage(mFileName2);
 
             //mVideoView.setVideoURI(videoUri);
-        }else if(requestCode == 2 && resultCode == RESULT_OK) {
+        } else if (requestCode == 2 && resultCode == RESULT_OK) {
             if (BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
                 toast("尚未连接IM服务器");
                 return;
             }
             sendLocalImageMessage(mFileName1);
-        } else{
+        } else {
             Log.e("niaho", Integer.toString(resultCode));
         }
     }
+
     /**
      * 发送本地图片文件
      */
@@ -497,7 +494,8 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         if (mConversationManager != null && event != null && mConversationManager.getConversationId().equals(event.getConversation().getConversationId()) //如果是当前会话的消息
                 && !msg.isTransient()) {//并且不为暂态消息
             if (myAdapter.findPosition(msg) < 0) {//如果未添加到界面中
-                myAdapter.addMessage(msg);
+                int last = myAdapter.getItemCount();
+                myAdapter.addMessage(last, msg);
                 //更新该会话下面的已读状态
                 mConversationManager.updateReceiveStatus(msg);
             }
@@ -554,16 +552,16 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
         hideSoftInputView();
         super.onDestroy();
     }
-    
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){ //同意权限申请
-                    Toast.makeText(this,"权限被接受了",Toast.LENGTH_SHORT).show();
-                }else { //拒绝权限申请
-                    Toast.makeText(this,"权限被拒绝了",Toast.LENGTH_SHORT).show();
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { //同意权限申请
+                    Toast.makeText(this, "权限被接受了", Toast.LENGTH_SHORT).show();
+                } else { //拒绝权限申请
+                    Toast.makeText(this, "权限被拒绝了", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:

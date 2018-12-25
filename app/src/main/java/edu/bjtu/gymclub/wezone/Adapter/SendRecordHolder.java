@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.github.library.bubbleview.BubbleTextView;
 
+import java.io.File;
 import java.io.IOException;
 
 import cn.bmob.newim.bean.BmobIMAudioMessage;
@@ -43,10 +44,10 @@ public class SendRecordHolder extends BaseViewHolder {
 
     @Override
     public void bindData(Object o) {
-        left_record = itemView.findViewById(R.id.left_record);
-        right_record = itemView.findViewById(R.id.right_record);
-        button1 = itemView.findViewById(R.id.button1);
-        button2 = itemView.findViewById(R.id.button2);
+        left_record =(LinearLayout) itemView.findViewById(R.id.left_record);
+        right_record =(LinearLayout) itemView.findViewById(R.id.right_record);
+        button1 = (BubbleTextView)itemView.findViewById(R.id.button1);
+        button2 =(BubbleTextView) itemView.findViewById(R.id.button2);
 
         final BmobIMMessage msg = (BmobIMMessage) o;
         right_record.setVisibility(View.VISIBLE);
@@ -55,6 +56,7 @@ public class SendRecordHolder extends BaseViewHolder {
 
         //使用buildFromDB方法转化成指定类型的消息
         final BmobIMAudioMessage message = BmobIMAudioMessage.buildFromDB(true, msg);
+        File audioFile = new File(msg.getContent().split("&")[0]);
         boolean isExists = BmobDownloadManager.isAudioExist(currentUid, message);
         if (!isExists) {//若指定格式的录音文件不存在，则需要下载，因为其文件比较小，故放在此下载
             BmobDownloadManager downloadTask = new BmobDownloadManager(getContext(), msg, new FileDownloadListener() {
@@ -62,16 +64,16 @@ public class SendRecordHolder extends BaseViewHolder {
                 @Override
                 public void onStart() {
 
-                    button2.setVisibility(View.INVISIBLE);//只有下载完成才显示播放的按钮
+//                    button2.setVisibility(View.INVISIBLE);//只有下载完成才显示播放的按钮
                 }
 
                 @Override
                 public void done(BmobException e) {
                     if (e == null) {
-                        button2.setVisibility(View.VISIBLE);
+//                        button2.setVisibility(View.VISIBLE);
                     } else {
 
-                        button2.setVisibility(View.INVISIBLE);
+//                        button2.setVisibility(View.INVISIBLE);
                     }
                 }
             });

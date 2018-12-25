@@ -64,7 +64,7 @@ public class SendPictureHolder extends BaseViewHolder implements View.OnClickLis
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
 
         //显示图片
-        Picasso.with(context).load(new File(message.getRemoteUrl())).into(image2);
+        Picasso.with(context).load(new File(message.getRemoteUrl())).placeholder(image2.getDrawable()).into(image2);
 
 
 

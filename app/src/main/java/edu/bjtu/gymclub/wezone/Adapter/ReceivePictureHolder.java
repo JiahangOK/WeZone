@@ -69,7 +69,7 @@ public class ReceivePictureHolder extends BaseViewHolder implements View.OnClick
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
 
         //显示图片
-        Picasso.with(context).load(message.getRemoteUrl()).into(image1);
+        Picasso.with(context).load(message.getRemoteUrl()).placeholder(image1.getDrawable()).into(image1);
 
 
         image1.setOnClickListener(new View.OnClickListener() {
