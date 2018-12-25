@@ -165,10 +165,8 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this,
                         Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) { //表示未授权时
-            Toast.makeText(this, "还没有进行授权!", Toast.LENGTH_SHORT).show();
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA}, 1);
         } else {
-            Toast.makeText(this, "已经授权成功了!", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -200,10 +198,8 @@ public class ChatActivity extends BaseActivity implements MessageListHandler {
     public void getRedpermission() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) { //表示未授权时
-            Toast.makeText(this, "还没有进行授权!", Toast.LENGTH_SHORT).show();
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA}, 1);
         } else {
-            Toast.makeText(this, "已经授权成功了!", Toast.LENGTH_SHORT).show();
         }
     }
 
