@@ -38,7 +38,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="11dp"
             android:background="@drawable/btn_login_selector"
-            android:text="查看"
+            android:text="添加"
             android:textColor="@color/base_color_text_white"
             android:textSize="14sp" />
     </RelativeLayout>

@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
 
 import cn.bmob.newim.bean.BmobIMImageMessage;
@@ -65,7 +68,9 @@ public class SendVideoHolder extends BaseViewHolder implements View.OnClickListe
         // 设置数据源，有多种重载，这里用本地文件的绝对路径
         try {
             //根据url获取缩略图
-            mmr.setDataSource(message.getRemoteUrl());
+            String remote = message.getRemoteUrl();
+            String[] path = remote.split("&");
+            mmr.setDataSource(path[0]);
             //获得第一帧图片
             b = mmr.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST);
         } catch (IllegalArgumentException e) {
@@ -82,7 +87,12 @@ public class SendVideoHolder extends BaseViewHolder implements View.OnClickListe
             public void onClick(View v) {
                 Intent intent1 = new Intent(Intent.ACTION_VIEW);
                 intent1.addCategory(Intent.CATEGORY_DEFAULT);
-                intent1.setDataAndType(Uri.parse(message.getRemoteUrl()), "video/*");
+                intent1.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                String remote = message.getRemoteUrl();
+                String[] path = remote.split("&");
+                File file = new File(path[0]);
+                Uri uri = FileProvider.getUriForFile(context, "edu.bjtu.gymclub.wezone.fileprovider", file);
+                intent1.setDataAndType(uri, "video/*");
                 context.startActivity(intent1);
             }
         });

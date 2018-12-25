@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -64,7 +65,11 @@ public class SendPictureHolder extends BaseViewHolder implements View.OnClickLis
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false, msg);
 
         //显示图片
-        Picasso.with(context).load(new File(message.getRemoteUrl())).placeholder(image2.getDrawable()).into(image2);
+
+        String remote = message.getRemoteUrl();
+        String[] path = remote.split("&");
+        File file = new File(path[0]);
+        Picasso.with(context).load(file).placeholder(image2.getDrawable()).into(image2);
 
 
 
@@ -73,7 +78,12 @@ public class SendPictureHolder extends BaseViewHolder implements View.OnClickLis
             public void onClick(View v) {
                 Intent intent1 = new Intent(Intent.ACTION_VIEW);
                 intent1.addCategory(Intent.CATEGORY_DEFAULT);
-                intent1.setDataAndType(Uri.parse(message.getRemoteUrl()), "image/*");
+                intent1.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                String remote = message.getRemoteUrl();
+                String[] path = remote.split("&");
+                File file = new File(path[0]);
+                Uri uri = FileProvider.getUriForFile(context, "edu.bjtu.gymclub.wezone.fileprovider", file);
+                intent1.setDataAndType(uri, "image/*");
                 context.startActivity(intent1);
                 intent1.getData();
             }
