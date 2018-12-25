@@ -153,7 +153,6 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-
     @Override
     public int getItemCount() {
         return msgs.size();
@@ -172,17 +171,19 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return new SendTextHolder(parent.getContext(), parent, c, onRecyclerViewListener);
         } else if (viewType == TYPE_RECEIVER_TXT) {
             return new ReceiveTextHolder(parent.getContext(), parent, onRecyclerViewListener);
-        } else if(viewType ==TYPE_AGREE) {
-            return new AgreeHolder(parent.getContext(),parent,onRecyclerViewListener);
-        } else if(viewType == TYPE_SEND_VIDEO){
-            return new VideoHolder(parent.getContext(),parent,onRecyclerViewListener);
-        } else if(viewType == TYPE_SEND_IMAGE){
-            return new PictureHolder(parent.getContext(),parent,onRecyclerViewListener);
-        } else if(viewType == TYPE_SEND_VOICE){
-            return new RecordHolder(parent.getContext(),parent,onRecyclerViewListener);
-        } else if(viewType == TYPE_RECEIVER_VOICE){
-            return new RecordHolder(parent.getContext(),parent,onRecyclerViewListener);
-        }else {//开发者自定义的其他类型，可自行处理
+        } else if (viewType == TYPE_AGREE) {
+            return new AgreeHolder(parent.getContext(), parent, onRecyclerViewListener);
+        } else if (viewType == TYPE_SEND_VIDEO) {
+            return new VideoHolder(parent.getContext(), parent, onRecyclerViewListener);
+        } else if (viewType == TYPE_SEND_IMAGE) {
+            return new PictureHolder(parent.getContext(), parent, onRecyclerViewListener);
+        } else if (viewType == TYPE_RECEIVER_IMAGE) {
+            return new PictureHolder(parent.getContext(), parent, onRecyclerViewListener);
+        } else if (viewType == TYPE_SEND_VOICE) {
+            return new RecordHolder(parent.getContext(), parent, onRecyclerViewListener);
+        } else if (viewType == TYPE_RECEIVER_VOICE) {
+            return new RecordHolder(parent.getContext(), parent, onRecyclerViewListener);
+        } else {//开发者自定义的其他类型，可自行处理
             return null;
         }
     }
@@ -191,7 +192,7 @@ public class MyListAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ((BaseViewHolder) holder).bindData(msgs.get(position));
         if (holder instanceof AgreeHolder) {//同意添加好友成功后的消息
-            ((AgreeHolder)holder).showTime(shouldShowTime(position));
+            ((AgreeHolder) holder).showTime(shouldShowTime(position));
         }
 //        if (holder instanceof ReceiveTextHolder) {
 //            ((ReceiveTextHolder) holder).showTime(shouldShowTime(position));
