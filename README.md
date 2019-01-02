@@ -1,4 +1,4 @@
-# WeZone
+# WeZone - Android Final
 This is the Android Final Project.
 
 ### Members:  
